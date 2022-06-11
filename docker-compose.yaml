@@ -1,8 +1,8 @@
 # docker-compose.yml
 version: "3"
 services:
-    express-typescript:
-        build: .
+    server:
+        build: ./server
         depends_on:
             - postgres
         working_dir: /usr/src/app
@@ -14,8 +14,7 @@ services:
             - "3000:3000"
         command: sh -c "npm install && npm run dev"
         volumes:
-            - .:/usr/src/app/
-            - /app/node_modules
+            - ./server:/usr/src/app/
 
     postgres:
         image: postgres:10.4
@@ -26,4 +25,4 @@ services:
             POSTGRES_PASSWORD: admin
             POSTGRES_DB: db
         volumes:
-            - ./db/database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
+            - ./server/db/database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
