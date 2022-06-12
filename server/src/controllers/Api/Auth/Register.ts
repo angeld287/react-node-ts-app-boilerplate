@@ -4,6 +4,8 @@
  * @author Angel Angeles <aangeles@litystyles.com>
  */
 
+import Encryptions from '../../../providers/Encryptions'
+
 import { validationResult } from 'express-validator';
 import IUserService from '../../../interfaces/IUserService';
 import { IRequest, IResponse } from '../../../interfaces/vendors';
@@ -31,7 +33,7 @@ class Register {
             const _email = req.body.email;
             const _phoneNumber = req.body.phoneNumber;
             const _userName = req.body.username;
-            const _password = req.body.password;
+            const _password = Encryptions.hash(req.body.password);
             const _fullName = req.body.fullName;
             const _gender = req.body.gender;
 
