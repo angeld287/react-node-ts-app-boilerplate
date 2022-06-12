@@ -12,6 +12,7 @@ import LocalStrategy from '../services/strategies/Local';
 import Log from '../middlewares/Log';
 import IUserService from '../interfaces/IUserService';
 import userService from '../services/userService';
+import IUser from '../interfaces/models/User';
 
 class Passport {
 	public mountPackage(_express: Application): Application {
@@ -20,11 +21,11 @@ class Passport {
 		_express = _express.use(passport.initialize());
 		_express = _express.use(passport.session());
 
-		passport.serializeUser<any, any>((user, done) => {
+		passport.serializeUser<any, any>((req, user: IUser, done) => {
 			done(null, user.id);
 		});
 
-		passport.deserializeUser<any, any>((id, done) => {
+		passport.deserializeUser<any, any>((req, id, done) => {
 			_user.getUserById(id).then(u => {
 				done(null, u);
 			}).catch(e => {
@@ -46,6 +47,7 @@ class Passport {
 	}
 
 	public isAuthenticated(req, res, next): any {
+		console.log(req.isAuthenticated())
 		if (req.isAuthenticated()) {
 			return next();
 		}

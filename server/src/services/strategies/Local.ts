@@ -11,25 +11,26 @@ import userService from '../userService';
 
 class Local {
 	public static init(_passport: any): any {
-		_passport.use(new Strategy({ usernameField: 'email' }, (email, password, done) => {
-			Log.info(`Email is ${email}`);
+		_passport.use(new Strategy({}, (username, password, done) => {
+			Log.info(`Email is ${username}`);
 			Log.info(`Password is ${password}`);
 
 			let _user: IUserService = new userService();
-			_user.getUserByEmail(email.toLowerCase()).then(user => {
+			_user.getUserByEmail(username.toLowerCase()).then(user => {
 				Log.info(`user is ${user.email}`);
 
 				if (!user) {
-					return done(null, false, { msg: `E-mail ${email} not found.` });
+					return done(null, false, { msg: `E-mail ${username} not found.` });
 				}
 
 				if (user && !user.user_password) {
-					return done(null, false, { msg: `E-mail ${email} was not registered with us using any password. Please use the appropriate providers to Log-In again!` });
+					return done(null, false, { msg: `E-mail ${username} was not registered with us using any password. Please use the appropriate providers to Log-In again!` });
 				}
 
 				Log.info('comparing password now!');
+				let db_pass = user.user_password.replace(/ /g, '')
 
-				if (user.use_password !== password) {
+				if (db_pass !== password) {
 					return done(null, false, { msg: 'Invalid E-mail or password.' });
 				}
 
