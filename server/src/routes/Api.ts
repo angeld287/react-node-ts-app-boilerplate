@@ -9,6 +9,7 @@ import { Router } from 'express';
 import LoginController from '../controllers/Api/Auth/Login'
 import RegisterController from '../controllers/Api/Auth/Register'
 import LogoutController from '../controllers/Api/Auth/Logout';
+import PageSource from '../controllers/Api/Pages/PageSource';
 
 const router = Router();
 
@@ -50,6 +51,12 @@ router.post(
 router.post(
     '/auth/logout',
     LogoutController.perform
+);
+
+router.post(
+    '/getPageSource',
+    body('url', 'url cannot be blank.').notEmpty(),
+    PageSource.getPageSource
 );
 
 export default router;
