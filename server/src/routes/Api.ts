@@ -10,6 +10,7 @@ import LoginController from '../controllers/Api/Auth/Login'
 import RegisterController from '../controllers/Api/Auth/Register'
 import LogoutController from '../controllers/Api/Auth/Logout';
 import PageSource from '../controllers/Api/Pages/PageSource';
+import Passport from '../providers/Passport';
 
 const router = Router();
 
@@ -56,6 +57,7 @@ router.post(
 router.post(
     '/getPageSource',
     body('url', 'url cannot be blank.').notEmpty(),
+    Passport.isAuthenticated,
     PageSource.getPageSource
 );
 
