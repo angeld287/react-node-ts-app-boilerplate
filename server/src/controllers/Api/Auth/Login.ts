@@ -64,9 +64,6 @@ class Login {
                 userName: _user.user_name,
             };
 
-            req.session.token = token;
-            req.session.user = userObject;
-
             passport.authenticate('local', (err, user, info) => {
                 Log.info('Here in the login controller #2!');
 
@@ -81,10 +78,13 @@ class Login {
                     });
                 }
 
-                return res.json({
-                    _user: req.session.user,
-                    token: req.session.token,
+                return req.logIn({ token, user: userObject }, () => {
+                    return res.json({
+                        _user: req.session.passport.user,
+                        token: req.session.passport.token,
+                    })
                 });
+
             })(req, res, next);
 
         } catch (error) {

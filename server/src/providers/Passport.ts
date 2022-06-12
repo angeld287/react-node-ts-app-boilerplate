@@ -21,12 +21,14 @@ class Passport {
 		_express = _express.use(passport.initialize());
 		_express = _express.use(passport.session());
 
-		passport.serializeUser<any, any>((req, user: IUser, done) => {
-			done(null, user.id);
+		passport.serializeUser<any, any>((req, user, done) => {
+			done(null, user);
+			console.log(req.isAuthenticated());
+
 		});
 
-		passport.deserializeUser<any, any>((req, id, done) => {
-			_user.getUserById(id).then(u => {
+		passport.deserializeUser<any, any>((req, sessionData, done) => {
+			_user.getUserById(sessionData.user.id).then(u => {
 				done(null, u);
 			}).catch(e => {
 				done(e, null);
