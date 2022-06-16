@@ -1,15 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import { IUser } from '../../interfaces/models/IUser';
-import IUserService from '../../interfaces/IUserService'
-import UserService from '../../apis/userService'
-
-const userService: IUserService = new UserService();
-
-interface IUserSlice {
-  status: 'idle' | 'pending' | 'succeeded' | 'failed',
-  user: IUser
-}
+import { loginAsync, logoutAsync } from './asyncThunks';
+import { IUserSlice } from './IUserSession';
 
 const initialState: IUserSlice = {
   user: {
@@ -27,30 +20,11 @@ const initialState: IUserSlice = {
   status: 'idle',
 };
 
-interface ICredentials {
-  username: string,
-  password: string
-}
-
-export const loginAsync = createAsyncThunk(
-  'userSession/login',
-  async (args: ICredentials) => {
-    return await userService.login(args.username, args.password);
-  }
-);
-
-export const logoutAsync = createAsyncThunk(
-  'userSession/logout',
-  async () => {
-    return await userService.logout();
-  }
-);
-
 export const userSessionSlice = createSlice({
   name: 'userSession',
   initialState,
 
-  //not async operations
+  //Actions
   reducers: {},
 
   //async operations
@@ -79,7 +53,7 @@ export const userSessionSlice = createSlice({
   },
 });
 
-//export not async operations
+//Actions
 export const { } = userSessionSlice.actions;
 
 export const selectUserSession = (state: RootState) => state.userSession;
