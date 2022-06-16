@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { IUser } from '../../interfaces/models/IUser';
 import { loginAsync, logoutAsync } from './asyncThunks';
 import { IUserSlice } from './IUserSession';
 
@@ -54,7 +53,7 @@ export const userSessionSlice = createSlice({
 });
 
 //Actions
-export const { } = userSessionSlice.actions;
+//export const { } = userSessionSlice.actions;
 
 export const selectUserSession = (state: RootState) => state.userSession;
 
