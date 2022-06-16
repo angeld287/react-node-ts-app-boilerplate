@@ -13,7 +13,20 @@ class userService implements IUserService {
             body: JSON.stringify({ username, password })
         });
 
-        const content = await userFetch.json();
-        return content
+        return await userFetch.json();
+    }
+
+    async logout(): Promise<any> {
+        const logoutFetch = await fetch('http://localhost:3001/api/auth/logout', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return await logoutFetch.json();
     }
 }
+
+export default userService
