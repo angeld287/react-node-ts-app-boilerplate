@@ -64,7 +64,7 @@ class Login {
                 userName: _user.user_name,
             };
 
-            passport.authenticate('local', (err, user, info) => {
+            passport.authenticate('local', (err: any, user: any, info: any) => {
                 Log.info('Here in the login controller #2!');
 
                 if (err) {

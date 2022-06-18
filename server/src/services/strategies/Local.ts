@@ -17,8 +17,6 @@ class Local {
 
 			let _user: IUserService = new userService();
 			_user.getUserByEmail(username.toLowerCase()).then(user => {
-				console.log('local');
-
 				Log.info(`user is ${user.email}`);
 
 				if (!user) {

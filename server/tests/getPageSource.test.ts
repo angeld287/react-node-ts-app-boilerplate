@@ -47,6 +47,7 @@ describe('Test getPageSource', () => {
 
         const response = await request(app)
             .post('/api/getPageSource')
+            .set('Cookie', loginResponse.header['set-cookie'])
             .send(body)
             .expect('Content-Type', /json/)
             .expect(200);
@@ -61,27 +62,43 @@ describe('Test getPageSource', () => {
         expect(logoutresponse.body.session).toBeUndefined()
     });
 
-    test('It must must return "tou must login" when user is not logged', async () => {
+    test('It must must return "You are not authorized" when user is not logged', async () => {
 
         const response = await request(app)
             .post('/api/getPageSource')
             .send(body)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(401);
 
-        expect(response.body.session).toBeNull()
+        expect(response.body.msg).toStrictEqual("You are not authenticated!");
 
     });
 
     test('It must must return "url cannot be blank." when the url field is empty', async () => {
+        const loginResponse = await request(app)
+            .post('/api/auth/login')
+            .send(user)
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(loginResponse.body.session).toBeDefined()
+
         body.url = ""
         const response = await request(app)
             .post('/api/getPageSource')
+            .set('Cookie', loginResponse.header['set-cookie'])
             .send(body)
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body.session).toBeNull()
+        expect(response.body.errors[0].msg).toStrictEqual("url cannot be blank.");
+
+        const logoutresponse = await request(app)
+            .post('/api/auth/logout')
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(logoutresponse.body.session).toBeUndefined()
 
     });
 

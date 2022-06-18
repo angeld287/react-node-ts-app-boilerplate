@@ -57,7 +57,7 @@ class Passport {
 		}
 
 		return res.status(401).json({
-			msg: 'Debe autenticarse!',
+			msg: 'You are not authenticated!',
 		});
 	}
 

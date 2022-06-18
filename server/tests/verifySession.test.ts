@@ -43,6 +43,7 @@ describe('Test User Session', () => {
 
         const response = await request(app)
             .get('/api/auth/getsession')
+            .set('Cookie', loginResponse.header['set-cookie'])
             .expect('Content-Type', /json/)
             .expect(200);
 
