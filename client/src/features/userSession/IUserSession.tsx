@@ -7,5 +7,6 @@ export interface ICredentials {
 
 export interface IUserSlice {
     status: 'idle' | 'pending' | 'succeeded' | 'failed',
+    sessionStatus: 'idle' | 'pending' | 'succeeded' | 'failed',
     user: IUser
 }

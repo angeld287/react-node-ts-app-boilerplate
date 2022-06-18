@@ -18,3 +18,10 @@ export const logoutAsync = createAsyncThunk(
         return await userService.logout();
     }
 );
+
+export const getSessionAsync = createAsyncThunk(
+    'userSession/getsession',
+    async () => {
+        return await userService.getSession();
+    }
+);

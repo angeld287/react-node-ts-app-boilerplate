@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { loginAsync, logoutAsync } from './asyncThunks';
+import { loginAsync, logoutAsync, getSessionAsync } from './asyncThunks';
 import { IUserSlice } from './IUserSession';
 
 const initialState: IUserSlice = {
@@ -17,6 +17,7 @@ const initialState: IUserSlice = {
     userName: "",
   },
   status: 'idle',
+  sessionStatus: 'idle',
 };
 
 export const userSessionSlice = createSlice({
@@ -48,6 +49,16 @@ export const userSessionSlice = createSlice({
       })
       .addCase(logoutAsync.rejected, (state) => {
         state.status = 'failed';
+      })
+      .addCase(getSessionAsync.pending, (state) => {
+        state.sessionStatus = 'pending';
+      })
+      .addCase(getSessionAsync.fulfilled, (state, action) => {
+        state.sessionStatus = 'idle';
+        state.user = action.payload.session.passport.user.user;
+      })
+      .addCase(getSessionAsync.rejected, (state) => {
+        state.sessionStatus = 'failed';
       });
   },
 });

@@ -27,6 +27,18 @@ class userService implements IUserService {
 
         return await logoutFetch.json();
     }
+
+    async getSession(): Promise<any> {
+        const sessionFetch = await fetch('http://localhost:3001/api/auth/getsession', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return await sessionFetch.json();
+    }
 }
 
 export default userService
