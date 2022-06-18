@@ -25,14 +25,18 @@ app = Passport.mountPackage(app, passport);
 
 app = Routes.mountApi(app);
 
-describe('Test User Session', () => {
+describe('Test getPageSource', () => {
 
     const user = {
         username: "existingadmin@test.com",
         password: "admin2807"
     }
 
-    test('It must must return a user session data when user is logged in', async () => {
+    const body = {
+        url: "https://github.com/angeld287/google_do_follow_search"
+    }
+
+    test('It must must the page source when user is logged in', async () => {
         const loginResponse = await request(app)
             .post('/api/auth/login')
             .send(user)
@@ -42,7 +46,8 @@ describe('Test User Session', () => {
         expect(loginResponse.body.session).toBeDefined()
 
         const response = await request(app)
-            .get('/api/auth/getsession')
+            .post('/api/getPageSource')
+            .send(body)
             .expect('Content-Type', /json/)
             .expect(200);
 
@@ -56,10 +61,23 @@ describe('Test User Session', () => {
         expect(logoutresponse.body.session).toBeUndefined()
     });
 
-    test('It must must return null when user is not logged', async () => {
+    test('It must must return "tou must login" when user is not logged', async () => {
 
         const response = await request(app)
-            .get('/api/auth/getsession')
+            .post('/api/getPageSource')
+            .send(body)
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(response.body.session).toBeNull()
+
+    });
+
+    test('It must must return "url cannot be blank." when the url field is empty', async () => {
+        body.url = ""
+        const response = await request(app)
+            .post('/api/getPageSource')
+            .send(body)
             .expect('Content-Type', /json/)
             .expect(200);
 

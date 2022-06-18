@@ -13,24 +13,24 @@ import Log from '../middlewares/Log';
 import IUserService from '../interfaces/IUserService';
 import userService from '../services/userService';
 import IUser from '../interfaces/models/User';
+import { IRequest, IResponse } from '../interfaces/vendors';
 
 class Passport {
 
-	passport: _passport.PassportStatic;
-
 	public mountPackage(_express: Application, passport?: _passport.PassportStatic): Application {
+		let localPassport: _passport.PassportStatic;
 		let _user: IUserService = new userService();
 
-		this.passport = passport || _passport;
+		localPassport = passport || _passport;
 
-		_express = _express.use(this.passport.initialize());
-		_express = _express.use(this.passport.session());
+		_express = _express.use(localPassport.initialize());
+		_express = _express.use(localPassport.session());
 
-		this.passport.serializeUser<any, any>((req, user, done) => {
+		localPassport.serializeUser<any, any>((req, user, done) => {
 			done(null, user);
 		});
 
-		this.passport.deserializeUser<any, any>((req, sessionData, done) => {
+		localPassport.deserializeUser<any, any>((req, sessionData, done) => {
 			_user.getUserById(sessionData.user.id).then(u => {
 				done(null, u);
 			}).catch(e => {
@@ -38,7 +38,7 @@ class Passport {
 			})
 		});
 
-		this.mountLocalStrategies(this.passport);
+		this.mountLocalStrategies(localPassport);
 
 		return _express;
 	}
@@ -46,12 +46,12 @@ class Passport {
 	public mountLocalStrategies(passport: _passport.PassportStatic): void {
 		try {
 			LocalStrategy.init(passport);
-		} catch (_err) {
+		} catch (_err: any) {
 			Log.error(_err.stack);
 		}
 	}
 
-	public isAuthenticated(req, res, next): any {
+	public isAuthenticated(req: IRequest, res: IResponse, next: any): any {
 		if (req.isAuthenticated()) {
 			return next();
 		}
@@ -61,9 +61,9 @@ class Passport {
 		});
 	}
 
-	public isAuthorized(req, res, next): any {
+	public isAuthorized(req: IRequest, res: IResponse, next: any): any {
 		const provider = req.path.split('/').slice(-1)[0];
-		const token = req.user.tokens.find(token => token.kind === provider);
+		const token = req.session.passport.user.tokens?.find(token => token.kind === provider);
 		if (token) {
 			return next();
 		} else {

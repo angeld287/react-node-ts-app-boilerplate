@@ -11,12 +11,14 @@ import userService from '../userService';
 
 class Local {
 	public static init(_passport: any): any {
-		_passport.use(new Strategy({}, (username, password, done) => {
+		_passport.use(new Strategy({}, (username: string, password: string, done: any) => {
 			Log.info(`Email is ${username}`);
 			Log.info(`Password is ${password}`);
 
 			let _user: IUserService = new userService();
 			_user.getUserByEmail(username.toLowerCase()).then(user => {
+				console.log('local');
+
 				Log.info(`user is ${user.email}`);
 
 				if (!user) {

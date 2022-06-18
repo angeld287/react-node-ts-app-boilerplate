@@ -1,4 +1,3 @@
-
 const request = require('supertest');
 import Routes from '../src/providers/Routes';
 import express from 'express'
