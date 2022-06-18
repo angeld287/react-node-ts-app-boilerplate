@@ -80,7 +80,7 @@ class Login {
 
                 return req.logIn({ token, user: userObject }, () => {
                     return res.json({
-                        _user: req.session.passport.user,
+                        session: req.session.passport.user,
                         token: req.session.passport.token,
                     })
                 });

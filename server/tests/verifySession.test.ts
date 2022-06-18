@@ -39,14 +39,14 @@ describe('Test login user', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(loginResponse.body._user).toBeDefined()
+        expect(loginResponse.body.session).toBeDefined()
 
         const response = await request(app)
             .post('/api/auth/logout')
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body._user).toBeUndefined()
+        expect(response.body.session).toBeUndefined()
     });
 
 })

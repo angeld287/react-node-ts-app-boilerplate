@@ -273,13 +273,13 @@ describe('Test register user', () => {
     //        .expect('Content-Type', /json/)
     //        .expect(200);
     //
-    //    expect(response.body._user).toHaveProperty('email')
-    //    expect(response.body._user).toHaveProperty('phoneNumber')
-    //    expect(response.body._user).toHaveProperty('passwordResetToken')
-    //    expect(response.body._user).toHaveProperty('passwordResetExpires')
-    //    expect(response.body._user).toHaveProperty('fullname')
-    //    expect(response.body._user).toHaveProperty('gender')
-    //    expect(response.body._user).toHaveProperty('userName')
+    //    expect(response.body.session.user).toHaveProperty('email')
+    //    expect(response.body.session.user).toHaveProperty('phoneNumber')
+    //    expect(response.body.session.user).toHaveProperty('passwordResetToken')
+    //    expect(response.body.session.user).toHaveProperty('passwordResetExpires')
+    //    expect(response.body.session.user).toHaveProperty('fullname')
+    //    expect(response.body.session.user).toHaveProperty('gender')
+    //    expect(response.body.session.user).toHaveProperty('userName')
     //});
 
 })
