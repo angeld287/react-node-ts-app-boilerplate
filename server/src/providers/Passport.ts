@@ -5,7 +5,7 @@
  */
 
 import { Application } from 'express';
-import * as passport from 'passport';
+import * as _passport from 'passport';
 
 import LocalStrategy from '../services/strategies/Local';
 
@@ -15,19 +15,22 @@ import userService from '../services/userService';
 import IUser from '../interfaces/models/User';
 
 class Passport {
-	public mountPackage(_express: Application): Application {
+
+	passport: _passport.PassportStatic;
+
+	public mountPackage(_express: Application, passport?: _passport.PassportStatic): Application {
 		let _user: IUserService = new userService();
 
-		_express = _express.use(passport.initialize());
-		_express = _express.use(passport.session());
+		this.passport = passport || _passport;
 
-		passport.serializeUser<any, any>((req, user, done) => {
+		_express = _express.use(this.passport.initialize());
+		_express = _express.use(this.passport.session());
+
+		this.passport.serializeUser<any, any>((req, user, done) => {
 			done(null, user);
-			console.log(req.isAuthenticated());
-
 		});
 
-		passport.deserializeUser<any, any>((req, sessionData, done) => {
+		this.passport.deserializeUser<any, any>((req, sessionData, done) => {
 			_user.getUserById(sessionData.user.id).then(u => {
 				done(null, u);
 			}).catch(e => {
@@ -35,12 +38,12 @@ class Passport {
 			})
 		});
 
-		this.mountLocalStrategies();
+		this.mountLocalStrategies(this.passport);
 
 		return _express;
 	}
 
-	public mountLocalStrategies(): void {
+	public mountLocalStrategies(passport: _passport.PassportStatic): void {
 		try {
 			LocalStrategy.init(passport);
 		} catch (_err) {
@@ -49,7 +52,6 @@ class Passport {
 	}
 
 	public isAuthenticated(req, res, next): any {
-		console.log(req.isAuthenticated())
 		if (req.isAuthenticated()) {
 			return next();
 		}

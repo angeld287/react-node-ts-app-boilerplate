@@ -4,6 +4,8 @@ import Routes from '../src/providers/Routes';
 import express from 'express'
 import session from 'express-session';
 import Locals from '../src/providers/Locals';
+import Passport from '../src/providers/Passport';
+import passport from 'passport';
 
 let app: express.Application = express();
 app.use(express.json());
@@ -17,6 +19,7 @@ const options = {
 };
 
 app.use(session(options))
+app = Passport.mountPackage(app, passport);
 app = Routes.mountApi(app);
 
 
@@ -33,13 +36,13 @@ describe('Test login user', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body._user).toHaveProperty('email')
-        expect(response.body._user).toHaveProperty('phoneNumber')
-        expect(response.body._user).toHaveProperty('passwordResetToken')
-        expect(response.body._user).toHaveProperty('passwordResetExpires')
-        expect(response.body._user).toHaveProperty('fullname')
-        expect(response.body._user).toHaveProperty('gender')
-        expect(response.body._user).toHaveProperty('userName')
+        expect(response.body._user.user).toHaveProperty('email')
+        expect(response.body._user.user).toHaveProperty('phoneNumber')
+        expect(response.body._user.user).toHaveProperty('passwordResetToken')
+        expect(response.body._user.user).toHaveProperty('passwordResetExpires')
+        expect(response.body._user.user).toHaveProperty('fullname')
+        expect(response.body._user.user).toHaveProperty('gender')
+        expect(response.body._user.user).toHaveProperty('userName')
     });
 
     test('It should respond "E-mail cannot be blank" when email is blank', async () => {
