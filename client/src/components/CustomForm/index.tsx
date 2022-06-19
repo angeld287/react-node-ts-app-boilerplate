@@ -4,11 +4,11 @@ import CustomButton from '../CustomButton';
 import CustomInputGroup from '../CustomInputGroup';
 import { ICustomForm } from './ICustomForm';
 
-const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, loading }) => {
+const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons }) => {
 
     const _buttons = useMemo(() => buttons.map(b => (
-        <CustomButton customStyle={{ marginRight: 5 }} key={'btn_' + b.name} loading={loading} {...b} />
-    )), [buttons, loading])
+        <CustomButton customStyle={{ marginRight: 5 }} htmlType={b.htmlType} key={'btn_' + b.name} loading={b.loading} {...b} />
+    )), [buttons])
 
     return (
         <Form

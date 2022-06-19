@@ -1,26 +1,27 @@
 import { Button, Form, Input, Layout } from 'antd';
 import { Content, Header } from 'antd/lib/layout/layout';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
 import { ICustomInputGroup } from '../../components/CustomInputGroup/ICustomInputGroup';
-import { getSessionAsync } from '../../features/userSession/asyncThunks';
+import { loginAsync } from '../../features/userSession/asyncThunks';
+import { ICredentials } from '../../features/userSession/IUserSession';
 import { selectUserSession } from '../../features/userSession/userSessionSlice';
 import styles from './styles';
 
 const Login: React.FC = () => {
+    const [loading, setLoading] = useState(false)
 
     const session = useAppSelector(selectUserSession);
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        console.log(session);
-    }, [session.sessionStatus]);
+        console.log(session.loginStatus);
+    }, [session.loginStatus]);
 
-    const handleClicLoginButton = () => {
-        console.log('clicked');
-
+    const handleClicLoginButton = (credentials: ICredentials) => {
+        dispatch(loginAsync(credentials))
     }
 
     let inputFields: Array<ICustomInputGroup> = [
@@ -43,16 +44,16 @@ const Login: React.FC = () => {
         {
             color: 'blue',
             _key: 'login_btn',
-            onClick: handleClicLoginButton,
             children: 'Login',
-            loading: false,
+            loading: session.loginStatus === 'pending',
+            htmlType: 'submit'
         }
     ]
 
     return (
         <>
             <Content style={styles.container}>
-                <CustomForm onSubmit={handleClicLoginButton} fields={inputFields} buttons={btns} verticalButtons={false} loading={session.status === 'pending'} />
+                <CustomForm onSubmit={handleClicLoginButton} fields={inputFields} buttons={btns} verticalButtons={false} loading={session.loginStatus === 'pending'} />
             </Content>
         </>
     );

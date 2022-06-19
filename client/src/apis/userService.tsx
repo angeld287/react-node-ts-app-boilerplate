@@ -12,7 +12,6 @@ class userService implements IUserService {
             },
             body: JSON.stringify({ username, password })
         });
-
         return await userFetch.json();
     }
 

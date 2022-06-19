@@ -6,7 +6,8 @@ export interface ICredentials {
 }
 
 export interface IUserSlice {
-    status: 'idle' | 'pending' | 'succeeded' | 'failed',
-    sessionStatus: 'idle' | 'pending' | 'succeeded' | 'failed',
+    loginStatus: 'idle' | 'pending' | 'succeeded' | 'failed',
+    logoutStatus: 'idle' | 'pending' | 'succeeded' | 'failed',
+    getSessionStatus: 'idle' | 'pending' | 'succeeded' | 'failed',
     user: IUser
 }

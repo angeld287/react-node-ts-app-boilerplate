@@ -1,14 +1,8 @@
+import { ButtonProps } from 'antd';
 import { MouseEventHandler, ReactNode } from 'react'
 
-export interface ICustomButton {
-    id?: string;
-    name?: string;
+export interface ICustomButton extends ButtonProps {
     color: string;
-    type?: "link" | "text" | "ghost" | "default" | "primary" | "dashed" | undefined;
     _key: string;
-    onClick: MouseEventHandler<HTMLElement>;
-    className?: string;
-    children: ReactNode | string;
-    loading?: boolean;
     customStyle?: any;
 }

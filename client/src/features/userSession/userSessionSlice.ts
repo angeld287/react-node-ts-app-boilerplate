@@ -16,8 +16,9 @@ const initialState: IUserSlice = {
     gender: "",
     userName: "",
   },
-  status: 'idle',
-  sessionStatus: 'idle',
+  getSessionStatus: 'idle',
+  loginStatus: 'idle',
+  logoutStatus: 'idle'
 };
 
 export const userSessionSlice = createSlice({
@@ -31,34 +32,34 @@ export const userSessionSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginAsync.pending, (state) => {
-        state.status = 'pending';
+        state.loginStatus = 'pending';
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.loginStatus = 'idle';
         state.user = action.payload;
       })
       .addCase(loginAsync.rejected, (state) => {
-        state.status = 'failed';
+        state.loginStatus = 'failed';
       })
       .addCase(logoutAsync.pending, (state) => {
-        state.status = 'pending';
+        state.logoutStatus = 'pending';
       })
       .addCase(logoutAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.logoutStatus = 'idle';
         state.user = initialState.user;
       })
       .addCase(logoutAsync.rejected, (state) => {
-        state.status = 'failed';
+        state.logoutStatus = 'failed';
       })
       .addCase(getSessionAsync.pending, (state) => {
-        state.sessionStatus = 'pending';
+        state.getSessionStatus = 'pending';
       })
       .addCase(getSessionAsync.fulfilled, (state, action) => {
-        state.sessionStatus = 'idle';
+        state.getSessionStatus = 'idle';
         state.user = action.payload.session !== null ? action.payload.session.passport.user.user : initialState;
       })
       .addCase(getSessionAsync.rejected, (state) => {
-        state.sessionStatus = 'failed';
+        state.getSessionStatus = 'failed';
       });
   },
 });
