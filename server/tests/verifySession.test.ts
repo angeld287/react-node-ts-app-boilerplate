@@ -47,7 +47,8 @@ describe('Test User Session', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body.session).not.toBeNull()
+        expect(response.body.data.session).not.toBeNull()
+        expect(response.body.data.session).toBeDefined()
 
         const logoutresponse = await request(app)
             .post('/api/auth/logout')
@@ -64,7 +65,7 @@ describe('Test User Session', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body.session).toBeNull()
+        expect(response.body.data.session).toBeNull()
 
     });
 
