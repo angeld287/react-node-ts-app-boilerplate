@@ -5,20 +5,24 @@
  */
 
 import { IRequest, IResponse } from '../../../interfaces/vendors';
+import { ISessionResponse } from '../../../interfaces/response/ISessionResponse';
 
 class Session {
     public static async perform(req: IRequest, res: IResponse): Promise<any> {
+        let result: ISessionResponse;
         if (req.isAuthenticated()) {
-            return res.status(200).json({
-                msg: 'The session is active',
+            result = {
+                message: 'The session is inactive',
                 session: req.session
-            });
+            };
+            return res.status(200).json(result);
         }
 
-        return res.status(200).json({
-            msg: 'The session is inactive',
+        result = {
+            message: 'The session is inactive',
             session: null
-        });
+        };
+        return res.status(200).json(result);
     }
 }
 
