@@ -1,6 +1,5 @@
-import { Button, Form, Input, Layout } from 'antd';
-import { Content, Header } from 'antd/lib/layout/layout';
-import React, { useEffect, useState } from 'react';
+import { Content } from 'antd/lib/layout/layout';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
@@ -11,7 +10,6 @@ import { selectUserSession } from '../../features/userSession/userSessionSlice';
 import styles from './styles';
 
 const Login: React.FC = () => {
-    const [loading, setLoading] = useState(false)
 
     const session = useAppSelector(selectUserSession);
     const dispatch = useAppDispatch()
