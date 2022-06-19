@@ -19,7 +19,7 @@ function App() {
       const response = await _userService.getSession();
 
       if (!didCancel) {
-        setSession(response.session);
+        setSession(response.data.session);
         setLoading(false);
       }
     }

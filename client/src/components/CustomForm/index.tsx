@@ -22,8 +22,8 @@ const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, loading 
             {fields.map(
                 _ => {
                     return <div key={'form_' + _.name} >
-                        {(_.type === undefined || _.type === 'input') &&
-                            <CustomInputGroup disabled={_.disabled} defaultValue={_.defaultValue} name={_.name} label={_.label} />
+                        {(_.type === undefined || _.type === 'input' || _.type === 'password') &&
+                            <CustomInputGroup type={_.type} disabled={_.disabled} defaultValue={_.defaultValue} name={_.name} label={_.label} />
                         }
                     </div>
                 }

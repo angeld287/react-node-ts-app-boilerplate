@@ -3,5 +3,5 @@ export interface ICustomInputGroup {
     label: string;
     defaultValue: string;
     disabled: boolean;
-    type?: 'input' | 'select'
+    type?: 'input' | 'select' | 'password';
 }
