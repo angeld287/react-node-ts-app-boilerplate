@@ -6,23 +6,29 @@
 
 import { IRequest, IResponse } from '../../../interfaces/vendors';
 import { ISessionResponse } from '../../../interfaces/response/ISessionResponse';
+import { InternalErrorResponse, SuccessResponse } from '../../../core/ApiResponse';
 
 class Session {
     public static async perform(req: IRequest, res: IResponse): Promise<any> {
-        let result: ISessionResponse;
-        if (req.isAuthenticated()) {
+        try {
+            let result: ISessionResponse;
+
+            if (req.isAuthenticated()) {
+                result = {
+                    message: 'The session is active',
+                    session: req.session
+                };
+                return new SuccessResponse('success', result).send(res);
+            }
+
             result = {
                 message: 'The session is inactive',
-                session: req.session
+                session: null
             };
-            return res.status(200).json(result);
+            return new SuccessResponse('success', result).send(res);
+        } catch (error) {
+            return new InternalErrorResponse('Error retrieving the session').send(res);
         }
-
-        result = {
-            message: 'The session is inactive',
-            session: null
-        };
-        return res.status(200).json(result);
     }
 }
 
