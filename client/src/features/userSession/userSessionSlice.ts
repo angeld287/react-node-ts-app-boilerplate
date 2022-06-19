@@ -55,7 +55,7 @@ export const userSessionSlice = createSlice({
       })
       .addCase(getSessionAsync.fulfilled, (state, action) => {
         state.sessionStatus = 'idle';
-        state.user = action.payload.session.passport.user.user;
+        state.user = action.payload.session !== null ? action.payload.session.passport.user.user : initialState;
       })
       .addCase(getSessionAsync.rejected, (state) => {
         state.sessionStatus = 'failed';
