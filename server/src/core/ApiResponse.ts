@@ -73,8 +73,8 @@ export class ForbiddenResponse extends ApiResponse {
     }
 }
 
-export class BadRequestResponse extends ApiResponse {
-    constructor(message = 'Bad Parameters') {
+export class BadRequestResponse<T> extends ApiResponse {
+    constructor(message = 'Bad Parameters', private data: T) {
         super(StatusCode.FAILURE, ResponseStatus.BAD_REQUEST, message);
     }
 }

@@ -11,6 +11,7 @@ import IUserService from '../../../interfaces/IUserService';
 import { IRequest, IResponse } from '../../../interfaces/vendors';
 import Log from '../../../middlewares/Log';
 import userService from '../../../services/userService';
+import IUserExistenceVerificationResponse from '../../../interfaces/response/IUserExistenceVerificationResponse';
 
 class Register {
     /**
@@ -37,7 +38,7 @@ class Register {
             const _fullName = req.body.fullName;
             const _gender = req.body.gender;
 
-            const existenceVerifications = await Promise.all(
+            const existenceVerifications: Array<IUserExistenceVerificationResponse> = await Promise.all(
                 [
                     user.verifyIfEmailExist(_email),
                     user.verifyIfPhoneNumberExist(_phoneNumber),

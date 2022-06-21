@@ -11,21 +11,28 @@ import Log from '../../../middlewares/Log';
 import IUser from "../../../interfaces/models/User";
 import IUserService from "../../../interfaces/IUserService";
 import userService from '../../../services/userService';
-import Locals from '../../../providers/Locals'
 var passport = require('passport');
 import { IResponse, IRequest, INext } from '../../../interfaces/vendors';
+import { BadRequestResponse } from '../../../core/ApiResponse';
 
 
 class Login {
+
+    /**
+     * Execute the action of login an user if the inputs are valid
+     * @param {string} req: get the request from the post
+     * @param {string} res: the response expected by the post
+     * @return {Promise<>} return a promise with the json result
+     */
     public static async perform(req: IRequest, res: IResponse, next: INext): Promise<any> {
         try {
             const errors = validationResult(req);
             let user: IUserService = new userService();
 
             if (!errors.isEmpty()) {
-                return res.json({
+                return new BadRequestResponse('Validation Error', {
                     errors: errors.array()
-                });
+                }).send(res);
             }
 
             const _username = req.body.username.toLowerCase();
@@ -38,15 +45,6 @@ class Login {
                 return res.json({
                     error: true,
                     message: 'Invalid Username or Password',
-                });
-            }
-
-            const token = await Encryptions.signEmailPasswordToken(_username, _password, Locals.config().appSecret);
-
-            if (token === false) {
-                return res.json({
-                    error: true,
-                    token: 'An error was occurred while generating the user token',
                 });
             }
 
