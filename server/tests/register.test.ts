@@ -1,3 +1,4 @@
+//import '@types/jest'
 const request = require('supertest');
 import Routes from '../src/providers/Routes';
 import express from 'express'
@@ -225,7 +226,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("The email: " + userRegister.email + " already exist.");
+            expect(response.body.errors[0].message).toStrictEqual("The email: " + userRegister.email + " already exist.");
         }
 
     });
@@ -241,7 +242,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("The phoneNumber: " + userRegister.phoneNumber + " already exist.");
+            expect(response.body.errors[0].message).toStrictEqual("The phoneNumber: " + userRegister.phoneNumber + " already exist.");
         }
 
     });
@@ -258,7 +259,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("The userName: " + userRegister.username + " already exist.");
+            expect(response.body.errors[0].message).toStrictEqual("The userName: " + userRegister.username + " already exist.");
         }
 
     });

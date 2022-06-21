@@ -139,3 +139,129 @@
 [2022-6-20 20:40:33] [INFO] sqlToDB(): SELECT | 0
 [2022-6-20 20:40:33] [INFO] sqlToDB(): SELECT | 0
 [2022-6-20 20:40:33] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-email-exist | sql: SELECT email FROM public.users where email = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-phoneNumber-exist | sql: SELECT phone_number FROM public.users where phone_number = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-userName-exist | sql: SELECT user_name FROM public.users where user_name = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-email-exist | sql: SELECT email FROM public.users where email = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-phoneNumber-exist | sql: SELECT phone_number FROM public.users where phone_number = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-userName-exist | sql: SELECT user_name FROM public.users where user_name = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-email-exist | sql: SELECT email FROM public.users where email = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-phoneNumber-exist | sql: SELECT phone_number FROM public.users where phone_number = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB() name: verify-userName-exist | sql: SELECT user_name FROM public.users where user_name = $1 | data: undefined
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:41:55] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:42:26] [INFO] Booting the 'HTTP' middleware...
+[2022-6-20 20:42:26] [INFO] Booting the 'CsrfToken' middleware...
+[2022-6-20 20:42:26] [INFO] Booting the 'Views' middleware...
+[2022-6-20 20:42:26] [INFO] Booting the 'Statics' middleware...
+[2022-6-20 20:42:26] [INFO] Booting the 'StatusMonitor' middleware...
+[2022-6-20 20:43:28] [INFO] Booting the 'HTTP' middleware...
+[2022-6-20 20:43:28] [INFO] Booting the 'CsrfToken' middleware...
+[2022-6-20 20:43:28] [INFO] Booting the 'Views' middleware...
+[2022-6-20 20:43:28] [INFO] Booting the 'Statics' middleware...
+[2022-6-20 20:43:28] [INFO] Booting the 'StatusMonitor' middleware...
+[2022-6-20 20:43:44] [INFO] Booting the 'HTTP' middleware...
+[2022-6-20 20:43:44] [INFO] Booting the 'CsrfToken' middleware...
+[2022-6-20 20:43:44] [INFO] Booting the 'Views' middleware...
+[2022-6-20 20:43:44] [INFO] Booting the 'Statics' middleware...
+[2022-6-20 20:43:44] [INFO] Booting the 'StatusMonitor' middleware...
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-email-exist | sql: SELECT email FROM public.users where email = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-phoneNumber-exist | sql: SELECT phone_number FROM public.users where phone_number = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-userName-exist | sql: SELECT user_name FROM public.users where user_name = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-email-exist | sql: SELECT email FROM public.users where email = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-phoneNumber-exist | sql: SELECT phone_number FROM public.users where phone_number = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-userName-exist | sql: SELECT user_name FROM public.users where user_name = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-email-exist | sql: SELECT email FROM public.users where email = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-userName-exist | sql: SELECT user_name FROM public.users where user_name = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB() name: verify-phoneNumber-exist | sql: SELECT phone_number FROM public.users where phone_number = $1 | data: undefined
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:43:45] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:44:13] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:44:13] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:44:13] [INFO] New user logged existingadmin@test.com
+[2022-6-20 20:44:13] [INFO] Email is existingadmin@test.com
+[2022-6-20 20:44:13] [INFO] Password is 78ca89fb969778e1044c06659fb077bdb4b77d1d6b0c0466e53233d73361a280
+[2022-6-20 20:44:13] [INFO] sqlToDB() name: fetch-user-by-email | sql: select * from public.users where email = $1 | data: undefined
+[2022-6-20 20:44:13] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:44:13] [INFO] user is existingadmin@test.com                                                                              
+[2022-6-20 20:44:13] [INFO] comparing password now!
+[2022-6-20 20:44:13] [INFO] Here in the login controller #2!
+[2022-6-20 20:44:13] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:44:13] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:45:26] [INFO] Booting the 'HTTP' middleware...
+[2022-6-20 20:45:26] [INFO] Booting the 'CsrfToken' middleware...
+[2022-6-20 20:45:26] [INFO] Booting the 'Views' middleware...
+[2022-6-20 20:45:26] [INFO] Booting the 'Statics' middleware...
+[2022-6-20 20:45:26] [INFO] Booting the 'StatusMonitor' middleware...
+[2022-6-20 20:45:32] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:45:32] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:45:32] [INFO] New user logged existingadmin@test.com
+[2022-6-20 20:45:32] [INFO] Password is 78ca89fb969778e1044c06659fb077bdb4b77d1d6b0c0466e53233d73361a280
+[2022-6-20 20:45:32] [INFO] Email is existingadmin@test.com
+[2022-6-20 20:45:32] [INFO] sqlToDB() name: fetch-user-by-email | sql: select * from public.users where email = $1 | data: undefined
+[2022-6-20 20:45:32] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:45:32] [INFO] user is existingadmin@test.com                                                                              
+[2022-6-20 20:45:32] [INFO] comparing password now!
+[2022-6-20 20:45:32] [INFO] Here in the login controller #2!
+[2022-6-20 20:45:32] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:45:32] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:45:56] [INFO] Booting the 'HTTP' middleware...
+[2022-6-20 20:45:56] [INFO] Booting the 'CsrfToken' middleware...
+[2022-6-20 20:45:56] [INFO] Booting the 'Views' middleware...
+[2022-6-20 20:45:56] [INFO] Booting the 'Statics' middleware...
+[2022-6-20 20:45:56] [INFO] Booting the 'StatusMonitor' middleware...
+[2022-6-20 20:45:59] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:45:59] [INFO] New user logged existingadmin@test.com
+[2022-6-20 20:45:59] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:45:59] [INFO] Email is existingadmin@test.com
+[2022-6-20 20:45:59] [INFO] Password is 78ca89fb969778e1044c06659fb077bdb4b77d1d6b0c0466e53233d73361a280
+[2022-6-20 20:45:59] [INFO] sqlToDB() name: fetch-user-by-email | sql: select * from public.users where email = $1 | data: undefined
+[2022-6-20 20:45:59] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:45:59] [INFO] comparing password now!
+[2022-6-20 20:45:59] [INFO] user is existingadmin@test.com                                                                              
+[2022-6-20 20:45:59] [INFO] Here in the login controller #2!
+[2022-6-20 20:45:59] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:45:59] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:48:8] [INFO] Booting the 'HTTP' middleware...
+[2022-6-20 20:48:8] [INFO] Booting the 'CsrfToken' middleware...
+[2022-6-20 20:48:8] [INFO] Booting the 'Views' middleware...
+[2022-6-20 20:48:8] [INFO] Booting the 'Statics' middleware...
+[2022-6-20 20:48:8] [INFO] Booting the 'StatusMonitor' middleware...
+[2022-6-20 20:48:17] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:48:17] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:48:17] [INFO] New user logged existingadmin@test.com
+[2022-6-20 20:48:17] [INFO] Email is existingadmin@test.com
+[2022-6-20 20:48:17] [INFO] Password is 78ca89fb969778e1044c06659fb077bdb4b77d1d6b0c0466e53233d73361a280
+[2022-6-20 20:48:17] [INFO] sqlToDB() name: fetch-user-by-email | sql: select * from public.users where email = $1 | data: undefined
+[2022-6-20 20:48:17] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:48:17] [INFO] user is existingadmin@test.com                                                                              
+[2022-6-20 20:48:17] [INFO] comparing password now!
+[2022-6-20 20:48:17] [INFO] Here in the login controller #2!
+[2022-6-20 20:48:17] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:48:17] [INFO] sqlToDB(): SELECT | 0
+[2022-6-20 20:48:43] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:48:43] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:48:43] [INFO] New user logged existingadmin@test.com
+[2022-6-20 20:48:43] [INFO] Password is 78ca89fb969778e1044c06659fb077bdb4b77d1d6b0c0466e53233d73361a280
+[2022-6-20 20:48:43] [INFO] Email is existingadmin@test.com
+[2022-6-20 20:48:43] [INFO] sqlToDB() name: fetch-user-by-email | sql: select * from public.users where email = $1 | data: undefined
+[2022-6-20 20:48:43] [INFO] sqlToDB(): SELECT | 1
+[2022-6-20 20:48:43] [INFO] comparing password now!
+[2022-6-20 20:48:43] [INFO] user is existingadmin@test.com                                                                              
+[2022-6-20 20:48:43] [INFO] Here in the login controller #2!
+[2022-6-20 20:48:43] [INFO] sqlToDB() name: fetch-user-by-mail-password | sql: select * from public.users where email = $1 and user_password = $2 | data: undefined
+[2022-6-20 20:48:43] [INFO] sqlToDB(): SELECT | 0
