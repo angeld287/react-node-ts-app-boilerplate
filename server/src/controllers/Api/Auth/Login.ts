@@ -13,7 +13,7 @@ import IUserService from "../../../interfaces/IUserService";
 import userService from '../../../services/userService';
 var passport = require('passport');
 import { IResponse, IRequest, INext } from '../../../interfaces/vendors';
-import { BadRequestResponse } from '../../../core/ApiResponse';
+import { BadRequestResponse, SuccessResponse } from '../../../core/ApiResponse';
 import { IUserLoginErrorResponse, IUserLoginResponse } from '../../../interfaces/response/UserResponses';
 
 
@@ -45,10 +45,11 @@ class Login {
             const _user = await user.validateUser(_username, _password);
 
             if (_user === false) {
-                return res.json({
+
+                return new BadRequestResponse('Validation Error', {
                     error: true,
                     message: 'Invalid Username or Password',
-                });
+                }).send(res);
             }
 
             Log.info(`New user logged ` + _username);
@@ -73,16 +74,16 @@ class Login {
                 }
 
                 if (info) {
-                    return res.json({
+                    return new BadRequestResponse('Validation Error', {
                         error: true,
-                        msg: info.message || info.msg,
-                    });
+                        message: info.message || info.msg,
+                    }).send(res);
                 }
 
                 return req.logIn({ ...userObject }, () => {
-                    return res.json({
+                    return new SuccessResponse('Success', {
                         session: req.session.passport.user,
-                    })
+                    }).send(res);
                 });
 
             })(req, res, next);
