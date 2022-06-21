@@ -11,7 +11,7 @@ import IUserService from '../../../interfaces/IUserService';
 import { IRequest, IResponse } from '../../../interfaces/vendors';
 import Log from '../../../middlewares/Log';
 import userService from '../../../services/userService';
-import IUserExistenceVerificationResponse from '../../../interfaces/response/IUserExistenceVerificationResponse';
+import { IUserExistenceVerificationResponse } from '../../../interfaces/response/UserResponses';
 
 class Register {
     /**

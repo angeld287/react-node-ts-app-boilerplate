@@ -14,6 +14,7 @@ import userService from '../../../services/userService';
 var passport = require('passport');
 import { IResponse, IRequest, INext } from '../../../interfaces/vendors';
 import { BadRequestResponse } from '../../../core/ApiResponse';
+import { IUserLoginErrorResponse, IUserLoginResponse } from '../../../interfaces/response/UserResponses';
 
 
 class Login {
@@ -28,6 +29,8 @@ class Login {
         try {
             const errors = validationResult(req);
             let user: IUserService = new userService();
+            let errorResponse: IUserLoginErrorResponse = null
+            let response: IUserLoginResponse = null
 
             if (!errors.isEmpty()) {
                 return new BadRequestResponse('Validation Error', {
@@ -79,7 +82,6 @@ class Login {
                 return req.logIn({ ...userObject }, () => {
                     return res.json({
                         session: req.session.passport.user,
-                        token: req.session.passport.token,
                     })
                 });
 

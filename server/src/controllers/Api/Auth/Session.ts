@@ -5,8 +5,8 @@
  */
 
 import { IRequest, IResponse } from '../../../interfaces/vendors';
-import { ISessionResponse } from '../../../interfaces/response/ISessionResponse';
 import { InternalErrorResponse, SuccessResponse } from '../../../core/ApiResponse';
+import { ISessionResponse } from '../../../interfaces/response/UserResponses';
 
 class Session {
     public static async perform(req: IRequest, res: IResponse): Promise<any> {
