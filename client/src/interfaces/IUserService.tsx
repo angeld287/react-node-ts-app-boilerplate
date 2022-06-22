@@ -1,9 +1,10 @@
+import { IResponse } from "./models/IResponse";
 import { IUser } from "./models/IUser";
 
 export default interface IUserService {
-    login(username: string, password: string): Promise<IUser>;
+    login(username: string, password: string): Promise<IResponse>;
 
-    logout(): Promise<any>;
+    logout(): Promise<IResponse>;
 
-    getSession(): Promise<any>;
+    getSession(): Promise<IResponse>;
 }

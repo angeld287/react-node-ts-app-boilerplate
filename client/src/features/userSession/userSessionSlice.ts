@@ -18,7 +18,9 @@ const initialState: IUserSlice = {
   },
   getSessionStatus: 'idle',
   loginStatus: 'idle',
-  logoutStatus: 'idle'
+  logoutStatus: 'idle',
+  error: undefined,
+  message: ""
 };
 
 export const userSessionSlice = createSlice({
@@ -36,7 +38,15 @@ export const userSessionSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.loginStatus = 'idle';
-        state.user = action.payload;
+        console.log(action.payload.data);
+
+        if (action.payload.data.session) {
+          state.user = action.payload.data.session;
+          state.error = initialState.error
+        } else {
+          state.user = initialState.user
+          state.error = action.payload.data
+        }
       })
       .addCase(loginAsync.rejected, (state) => {
         state.loginStatus = 'failed';
@@ -56,7 +66,7 @@ export const userSessionSlice = createSlice({
       })
       .addCase(getSessionAsync.fulfilled, (state, action) => {
         state.getSessionStatus = 'idle';
-        state.user = action.payload.session !== null ? action.payload.session.passport.user.user : initialState;
+        state.user = action.payload.data.session !== null ? action.payload.data.session.passport.user.user : initialState;
       })
       .addCase(getSessionAsync.rejected, (state) => {
         state.getSessionStatus = 'failed';

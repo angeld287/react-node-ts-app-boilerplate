@@ -1,3 +1,4 @@
+import { IBase } from "../../interfaces/models/IBase"
 import { IUser } from "../../interfaces/models/IUser"
 
 export interface ICredentials {
@@ -5,7 +6,7 @@ export interface ICredentials {
     password: string
 }
 
-export interface IUserSlice {
+export interface IUserSlice extends IBase {
     loginStatus: 'idle' | 'pending' | 'succeeded' | 'failed',
     logoutStatus: 'idle' | 'pending' | 'succeeded' | 'failed',
     getSessionStatus: 'idle' | 'pending' | 'succeeded' | 'failed',

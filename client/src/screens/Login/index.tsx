@@ -1,5 +1,6 @@
 import { Content } from 'antd/lib/layout/layout';
-import React, { useEffect } from 'react';
+import { MessageApi } from 'antd/lib/message';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
@@ -13,12 +14,23 @@ const Login: React.FC = () => {
 
     const session = useAppSelector(selectUserSession);
     const dispatch = useAppDispatch()
+    const [message, setMessage] = useState<MessageApi>()
 
     useEffect(() => {
-        console.log(session.loginStatus);
-    }, [session.loginStatus]);
+        var arr = session.error;
+        if (session.loginStatus === 'idle' && arr && message) {
+            if (Array.isArray(arr)) {
+                arr.forEach(e => {
+                    message.error(e.message)
+                });
+            } else {
+                message.error(arr.message)
+            }
+        }
+    }, [session.loginStatus, session.error, message]);
 
-    const handleClicLoginButton = (credentials: ICredentials) => {
+    const handleClicLoginButton = (credentials: ICredentials, message: MessageApi) => {
+        setMessage(message);
         dispatch(loginAsync(credentials))
     }
 

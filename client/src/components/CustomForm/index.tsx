@@ -1,5 +1,5 @@
-import { Form } from 'antd';
-import React, { useMemo } from 'react';
+import { Form, message } from 'antd';
+import React, { useCallback, useMemo } from 'react';
 import CustomButton from '../CustomButton';
 import CustomInputGroup from '../CustomInputGroup';
 import { ICustomForm } from './ICustomForm';
@@ -10,13 +10,17 @@ const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons }) => {
         <CustomButton customStyle={{ marginRight: 5 }} htmlType={b.htmlType} key={'btn_' + b.name} loading={b.loading} {...b} />
     )), [buttons])
 
+    const submitForm = useCallback((e: any) => {
+        return onSubmit(e, message)
+    }, [onSubmit]);
+
     return (
         <Form
             name="basic"
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
             initialValues={{ remember: true }}
-            onFinish={onSubmit}
+            onFinish={submitForm}
             autoComplete="off"
         >
             {fields.map(

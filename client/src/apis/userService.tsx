@@ -1,9 +1,9 @@
-import { IUser } from "../interfaces/models/IUser";
 import IUserService from "../interfaces/IUserService";
+import { IResponse } from "../interfaces/models/IResponse";
 
 class userService implements IUserService {
 
-    async login(username: string, password: string): Promise<IUser> {
+    async login(username: string, password: string): Promise<IResponse> {
         const userFetch = await fetch('http://localhost:3001/api/auth/login', {
             method: 'POST',
             headers: {
@@ -15,7 +15,7 @@ class userService implements IUserService {
         return await userFetch.json();
     }
 
-    async logout(): Promise<any> {
+    async logout(): Promise<IResponse> {
         const logoutFetch = await fetch('http://localhost:3001/api/auth/logout', {
             method: 'GET',
             headers: {
@@ -27,7 +27,7 @@ class userService implements IUserService {
         return await logoutFetch.json();
     }
 
-    async getSession(): Promise<any> {
+    async getSession(): Promise<IResponse> {
         const sessionFetch = await fetch('http://localhost:3001/api/auth/getsession', {
             method: 'GET',
             headers: {
