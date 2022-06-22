@@ -27,7 +27,7 @@ class Register {
             let user: IUserService = new userService()
 
             if (!errors.isEmpty()) {
-                return new BadRequestResponse('Validation Error', {
+                return new SuccessResponse('Success', {
                     errors: errors.array()
                 }).send(res);
             }
@@ -48,7 +48,7 @@ class Register {
             );
 
             if (existenceVerifications.filter(_ => _.exist).length > 0) {
-                return new BadRequestResponse('Validation Error', {
+                return new SuccessResponse('Success', {
                     errors: existenceVerifications.filter(_ => _.exist)
                 }).send(res);
             }

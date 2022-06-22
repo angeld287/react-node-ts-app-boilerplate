@@ -51,7 +51,7 @@ describe('Test login user', () => {
             .post('/api/auth/login')
             .send(user)
             .expect('Content-Type', /json/)
-            .expect(400);
+            .expect(200);
 
         if (response.body.errors !== undefined) {
             expect(response.body.data.errors[0].message).toStrictEqual("E-mail cannot be blank.");
@@ -66,7 +66,7 @@ describe('Test login user', () => {
             .post('/api/auth/login')
             .send(user)
             .expect('Content-Type', /json/)
-            .expect(400);
+            .expect(200);
 
         if (response.body.errors !== undefined) {
             expect(response.body.data.errors[0].message).toStrictEqual("E-mail is not valid.");
@@ -83,7 +83,7 @@ describe('Test login user', () => {
             .post('/api/auth/login')
             .send(user)
             .expect('Content-Type', /json/)
-            .expect(400);
+            .expect(200);
 
         if (response.body.errors !== undefined) {
             expect(response.body.data.errors[0].message).toStrictEqual("Password cannot be blank.");
@@ -98,7 +98,7 @@ describe('Test login user', () => {
             .post('/api/auth/login')
             .send(user)
             .expect('Content-Type', /json/)
-            .expect(400);
+            .expect(200);
 
         if (response.body.errors !== undefined) {
             expect(response.body.data.errors[0].message).toStrictEqual("Password length must be atleast 8 characters.");
@@ -114,7 +114,7 @@ describe('Test login user', () => {
             .post('/api/auth/login')
             .send(user)
             .expect('Content-Type', /json/)
-            .expect(400);
+            .expect(200);
 
         if (response.body.errors !== undefined) {
             expect(response.body.data.errors[0].message).toStrictEqual("Invalid Username or Password.");
