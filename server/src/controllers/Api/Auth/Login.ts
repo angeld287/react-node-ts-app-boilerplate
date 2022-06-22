@@ -6,7 +6,6 @@
 
 import Encryptions from '../../../providers/Encryptions'
 
-import { validationResult } from 'express-validator';
 import Log from '../../../middlewares/Log';
 import IUser from "../../../interfaces/models/User";
 import IUserService from "../../../interfaces/IUserService";
@@ -14,7 +13,7 @@ import userService from '../../../services/userService';
 var passport = require('passport');
 import { IResponse, IRequest, INext } from '../../../interfaces/vendors';
 import { AuthFailureResponse, SuccessResponse } from '../../../core/ApiResponse';
-import { IUserLoginErrorResponse, IUserLoginResponse } from '../../../interfaces/response/UserResponses';
+import ExpressValidator from '../../../providers/ExpressValidation';
 
 
 class Login {
@@ -27,10 +26,8 @@ class Login {
      */
     public static async perform(req: IRequest, res: IResponse, next: INext): Promise<any> {
         try {
-            const errors = validationResult(req);
+            const errors = new ExpressValidator().validator(req);
             let user: IUserService = new userService();
-            let errorResponse: IUserLoginErrorResponse = null
-            let response: IUserLoginResponse = null
 
             if (!errors.isEmpty()) {
                 return new SuccessResponse('Success', {
