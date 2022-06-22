@@ -48,8 +48,8 @@ abstract class ApiResponse {
     }
 }
 
-export class AuthFailureResponse extends ApiResponse {
-    constructor(message = 'Authentication Failure') {
+export class AuthFailureResponse<T> extends ApiResponse {
+    constructor(message = 'Authentication Failure', data?: T) {
         super(StatusCode.FAILURE, ResponseStatus.UNAUTHORIZED, message);
     }
 }

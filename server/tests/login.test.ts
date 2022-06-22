@@ -114,7 +114,7 @@ describe('Test login user', () => {
             .post('/api/auth/login')
             .send(user)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
         if (response.body.errors !== undefined) {
             expect(response.body.data.errors[0].message).toStrictEqual("Invalid Username or Password.");

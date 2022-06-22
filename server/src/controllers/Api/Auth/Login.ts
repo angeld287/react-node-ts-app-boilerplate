@@ -13,7 +13,7 @@ import IUserService from "../../../interfaces/IUserService";
 import userService from '../../../services/userService';
 var passport = require('passport');
 import { IResponse, IRequest, INext } from '../../../interfaces/vendors';
-import { BadRequestResponse, SuccessResponse } from '../../../core/ApiResponse';
+import { AuthFailureResponse, BadRequestResponse, SuccessResponse } from '../../../core/ApiResponse';
 import { IUserLoginErrorResponse, IUserLoginResponse } from '../../../interfaces/response/UserResponses';
 
 
@@ -74,7 +74,7 @@ class Login {
                 }
 
                 if (info) {
-                    return new BadRequestResponse('Validation Error', {
+                    return new AuthFailureResponse('Validation Error', {
                         error: true,
                         message: info.message || info.msg,
                     }).send(res);
@@ -90,9 +90,9 @@ class Login {
 
         } catch (error) {
             Log.error(`Internal Server Error ` + error);
-            return res.status(500).json({
+            return new AuthFailureResponse('Validation Error', {
                 error: 'Internal Server Error',
-            });
+            }).send(res);
         }
     }
 }
