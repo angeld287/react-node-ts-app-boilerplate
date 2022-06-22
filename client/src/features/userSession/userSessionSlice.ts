@@ -38,14 +38,15 @@ export const userSessionSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.loginStatus = 'idle';
+        let data = action.payload.data;
         console.log(action.payload.data);
 
-        if (action.payload.data.session) {
-          state.user = action.payload.data.session;
+        if (data.session) {
+          state.user = data.session;
           state.error = initialState.error
         } else {
           state.user = initialState.user
-          state.error = action.payload.data
+          state.error = data.errors ? data.errors : data
         }
       })
       .addCase(loginAsync.rejected, (state) => {
