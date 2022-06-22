@@ -39,7 +39,7 @@ describe('Test User Session', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(loginResponse.body.session).toBeDefined()
+        expect(loginResponse.body.data.session).toBeDefined()
 
         const response = await request(app)
             .get('/api/auth/getsession')

@@ -12,6 +12,7 @@ import { IRequest, IResponse } from '../../../interfaces/vendors';
 import Log from '../../../middlewares/Log';
 import userService from '../../../services/userService';
 import { IUserExistenceVerificationResponse } from '../../../interfaces/response/UserResponses';
+import { BadRequestResponse, InternalErrorResponse, SuccessResponse } from '../../../core/ApiResponse';
 
 class Register {
     /**
@@ -26,9 +27,9 @@ class Register {
             let user: IUserService = new userService()
 
             if (!errors.isEmpty()) {
-                return res.json({
+                return new BadRequestResponse('Validation Error', {
                     errors: errors.array()
-                });
+                }).send(res);
             }
 
             const _email = req.body.email;
@@ -47,31 +48,31 @@ class Register {
             );
 
             if (existenceVerifications.filter(_ => _.exist).length > 0) {
-                return res.json({
+                return new BadRequestResponse('Validation Error', {
                     errors: existenceVerifications.filter(_ => _.exist)
-                });
+                }).send(res);
             }
 
             const createUser = await user.createNewUser(_email, _phoneNumber, _password, _fullName, _gender, _userName, null);
 
             if (createUser.created) {
                 Log.info(`New user created ` + _userName);
-                return res.json({
+                return new SuccessResponse('Success', {
                     userId: createUser.id,
                     message: 'The user has been created successfully'
-                });
+                }).send(res);
             } else {
                 Log.error(`An error was occurred while creating the user`);
-                return res.status(500).json({
+                return new InternalErrorResponse('Validation Error', {
                     error: 'An error was occurred while creating the user',
-                });
+                }).send(res);
             }
 
         } catch (error) {
             Log.error(`Internal Server Error ` + error);
-            return res.status(500).json({
+            return new InternalErrorResponse('Validation Error', {
                 error: 'Internal Server Error',
-            });
+            }).send(res);
         }
     }
 

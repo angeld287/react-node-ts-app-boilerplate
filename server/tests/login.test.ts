@@ -35,13 +35,13 @@ describe('Test login user', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body.session).toHaveProperty('email')
-        expect(response.body.session).toHaveProperty('phoneNumber')
-        expect(response.body.session).toHaveProperty('passwordResetToken')
-        expect(response.body.session).toHaveProperty('passwordResetExpires')
-        expect(response.body.session).toHaveProperty('fullname')
-        expect(response.body.session).toHaveProperty('gender')
-        expect(response.body.session).toHaveProperty('userName')
+        expect(response.body.data.session).toHaveProperty('email')
+        expect(response.body.data.session).toHaveProperty('phoneNumber')
+        expect(response.body.data.session).toHaveProperty('passwordResetToken')
+        expect(response.body.data.session).toHaveProperty('passwordResetExpires')
+        expect(response.body.data.session).toHaveProperty('fullname')
+        expect(response.body.data.session).toHaveProperty('gender')
+        expect(response.body.data.session).toHaveProperty('userName')
     });
 
     test('It should respond "E-mail cannot be blank" when email is blank', async () => {
@@ -54,7 +54,7 @@ describe('Test login user', () => {
             .expect(400);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("E-mail cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("E-mail cannot be blank.");
         }
 
     });
@@ -69,7 +69,7 @@ describe('Test login user', () => {
             .expect(400);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("E-mail is not valid.");
+            expect(response.body.data.errors[0].message).toStrictEqual("E-mail is not valid.");
         }
 
     });
@@ -86,7 +86,7 @@ describe('Test login user', () => {
             .expect(400);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("Password cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Password cannot be blank.");
         }
 
     });
@@ -101,7 +101,7 @@ describe('Test login user', () => {
             .expect(400);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("Password length must be atleast 8 characters.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Password length must be atleast 8 characters.");
         }
 
     });
@@ -117,7 +117,7 @@ describe('Test login user', () => {
             .expect(200);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("Invalid Username or Password.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Invalid Username or Password.");
         }
 
     });

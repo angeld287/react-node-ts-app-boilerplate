@@ -29,10 +29,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("Username cannot be blank.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("Username cannot be blank.");
         }
 
     });
@@ -48,7 +48,7 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
         if (response.body.errors !== undefined) {
             expect(response.body.errors[0].msg).toStrictEqual("E-mail cannot be blank.");
@@ -64,10 +64,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("E-mail is not valid.");
+            expect(response.body.data.errors[0].msg).toStrictEqual("E-mail is not valid.");
         }
 
     });
@@ -83,10 +83,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("Phone Number cannot be blank.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("Phone Number cannot be blank.");
         }
 
     });
@@ -99,10 +99,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("invalid Phone Number format.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("invalid Phone Number format.");
         }
 
     });
@@ -118,10 +118,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("Password cannot be blank.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("Password cannot be blank.");
         }
 
     });
@@ -133,10 +133,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("Password length must be atleast 8 characters.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("Password length must be atleast 8 characters.");
         }
 
     });
@@ -149,10 +149,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("Confirmation Password cannot be blank.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("Confirmation Password cannot be blank.");
         }
 
     });
@@ -166,10 +166,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("Passwords don't match.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("Passwords don't match.");
         }
 
     });
@@ -185,10 +185,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("fullName cannot be blank.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("fullName cannot be blank.");
         }
 
     });
@@ -204,10 +204,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("Gender cannot be blank.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].msg).toStrictEqual("Gender cannot be blank.");
         }
 
     });
@@ -223,10 +223,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("The email: " + userRegister.email + " already exist.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].message).toStrictEqual("The email: " + userRegister.email + " already exist.");
         }
 
     });
@@ -239,10 +239,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("The phoneNumber: " + userRegister.phoneNumber + " already exist.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].message).toStrictEqual("The phoneNumber: " + userRegister.phoneNumber + " already exist.");
         }
 
     });
@@ -256,10 +256,10 @@ describe('Test register user', () => {
             .post('/api/auth/register')
             .send(userRegister)
             .expect('Content-Type', /json/)
-            .expect(200);
+            .expect(400);
 
-        if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].message).toStrictEqual("The userName: " + userRegister.username + " already exist.");
+        if (response.body.data.errors !== undefined) {
+            expect(response.body.data.errors[0].message).toStrictEqual("The userName: " + userRegister.username + " already exist.");
         }
 
     });
@@ -271,15 +271,15 @@ describe('Test register user', () => {
     //        .post('/api/auth/register')
     //        .send(user)
     //        .expect('Content-Type', /json/)
-    //        .expect(200);
+    //        .expect(400);
     //
-    //    expect(response.body.session.user).toHaveProperty('email')
-    //    expect(response.body.session.user).toHaveProperty('phoneNumber')
-    //    expect(response.body.session.user).toHaveProperty('passwordResetToken')
-    //    expect(response.body.session.user).toHaveProperty('passwordResetExpires')
-    //    expect(response.body.session.user).toHaveProperty('fullname')
-    //    expect(response.body.session.user).toHaveProperty('gender')
-    //    expect(response.body.session.user).toHaveProperty('userName')
+    //    expect(response.body.data.session.user).toHaveProperty('email')
+    //    expect(response.body.data.session.user).toHaveProperty('phoneNumber')
+    //    expect(response.body.data.session.user).toHaveProperty('passwordResetToken')
+    //    expect(response.body.data.session.user).toHaveProperty('passwordResetExpires')
+    //    expect(response.body.data.session.user).toHaveProperty('fullname')
+    //    expect(response.body.data.session.user).toHaveProperty('gender')
+    //    expect(response.body.data.session.user).toHaveProperty('userName')
     //});
 
 })

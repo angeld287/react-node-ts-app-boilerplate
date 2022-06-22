@@ -74,13 +74,13 @@ export class ForbiddenResponse extends ApiResponse {
 }
 
 export class BadRequestResponse<T> extends ApiResponse {
-    constructor(message = 'Bad Parameters', private data: T) {
+    constructor(message = 'Bad Parameters', private data?: T) {
         super(StatusCode.FAILURE, ResponseStatus.BAD_REQUEST, message);
     }
 }
 
-export class InternalErrorResponse extends ApiResponse {
-    constructor(message = 'Internal Error') {
+export class InternalErrorResponse<T> extends ApiResponse {
+    constructor(message = 'Internal Error', private data?: T) {
         super(StatusCode.FAILURE, ResponseStatus.INTERNAL_ERROR, message);
     }
 }
@@ -98,7 +98,7 @@ export class FailureMsgResponse extends ApiResponse {
 }
 
 export class SuccessResponse<T> extends ApiResponse {
-    constructor(message: string, private data: T) {
+    constructor(message: string, private data?: T) {
         super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
     }
 
