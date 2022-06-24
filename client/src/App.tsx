@@ -1,15 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import userService from './apis/userService';
 import './App.css';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { selectUserSession, setSession } from './features/userSession/userSessionSlice';
 import IUserService from './interfaces/IUserService';
 import Routes from './Routes';
 import Login from './screens/Login';
 
 function App() {
   const _userService: IUserService = useMemo(() => new userService(), []);
+  const session = useAppSelector(selectUserSession);
+  const dispatch = useAppDispatch();
 
   const [loading, setLoading] = useState(false);
-  const [session, setSession] = useState();
 
   useEffect(() => {
     let didCancel = false;
@@ -19,7 +22,7 @@ function App() {
       const response = await _userService.getSession();
 
       if (!didCancel) {
-        setSession(response.data.session);
+        dispatch(setSession(response.data.session !== null));
         setLoading(false);
       }
     }
@@ -33,7 +36,7 @@ function App() {
   }, [_userService]);
 
   if (loading) return <h1>Cargando...</h1>
-  if (session === null) return <Login />
+  if (!session.activeSession) return <Login />
 
   return <Routes />;
 }

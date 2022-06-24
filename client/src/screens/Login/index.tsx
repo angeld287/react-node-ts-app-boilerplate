@@ -17,48 +17,28 @@ const Login: React.FC = () => {
     const [message, setMessage] = useState<MessageApi>()
 
     useEffect(() => {
-
         const login = () => {
-            if (session.loginStatus !== 'idle' && !message) {
-                return false
-            }
-
             let sessionError = session.error;
             if (sessionError) {
-
-                let isArray = Array.isArray(sessionError);
-                if (!isArray) {
-                    //return message?.error(sessionError.message)
+                if (!Array.isArray(sessionError)) {
+                    return message?.error(sessionError.message)
                 }
-
-                if (isArray) {
-
-                    return null
+                if (Array.isArray(sessionError)) {
+                    return sessionError.forEach(e => {
+                        message?.error(e.message)
+                    });
                 }
             }
 
             let sessionUser = session.user;
             if (sessionUser) {
-
                 return null
-            }
-
-            if (session.loginStatus === 'idle') {
-                if (sessionError && message) {
-                    if (Array.isArray(sessionError)) {
-                        sessionError.forEach(e => {
-                            message.error(e.message)
-                        });
-                    } else {
-
-                    }
-                } else if (sessionUser) {
-
-                }
             }
         }
 
-        login()
+        if (session.loginStatus === 'idle' && message) {
+            login()
+        }
 
     }, [session.loginStatus, session.error, message]);
 

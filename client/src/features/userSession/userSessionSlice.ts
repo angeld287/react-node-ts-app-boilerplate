@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { loginAsync, logoutAsync, getSessionAsync } from './asyncThunks';
 import { IUserSlice } from './IUserSession';
@@ -20,7 +20,8 @@ const initialState: IUserSlice = {
   loginStatus: 'idle',
   logoutStatus: 'idle',
   error: undefined,
-  message: ""
+  message: "",
+  activeSession: false
 };
 
 export const userSessionSlice = createSlice({
@@ -28,7 +29,11 @@ export const userSessionSlice = createSlice({
   initialState,
 
   //Actions
-  reducers: {},
+  reducers: {
+    setSession: (state, action: PayloadAction<boolean>) => {
+      state.activeSession = action.payload;
+    },
+  },
 
   //async operations
   extraReducers: (builder) => {
@@ -43,8 +48,10 @@ export const userSessionSlice = createSlice({
 
         if (data.session) {
           state.user = data.session;
-          state.error = initialState.error
+          state.error = initialState.error;
+          state.activeSession = true;
         } else {
+          state.activeSession = false;
           state.user = initialState.user
           state.error = data.errors ? data.errors : data
         }
@@ -76,7 +83,7 @@ export const userSessionSlice = createSlice({
 });
 
 //Actions
-//export const { } = userSessionSlice.actions;
+export const { setSession } = userSessionSlice.actions;
 
 export const selectUserSession = (state: RootState) => state.userSession;
 
