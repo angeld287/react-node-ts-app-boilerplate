@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Header from '../components/Header';
-import { Counter } from '../screens/Counter/Counter';
+import SearchConsole from '../screens/SearchConsole';
 import Login from '../screens/Login';
 
 const Routes: React.FC = () => {
@@ -15,7 +15,7 @@ const Routes: React.FC = () => {
             <div>
                 <Header />
                 <RRoutes>
-                    <Route path="/" element={<Counter />} />
+                    <Route path="/" element={<SearchConsole />} />
                     <Route path="/login" element={<Login />} />
                 </RRoutes>
             </div>

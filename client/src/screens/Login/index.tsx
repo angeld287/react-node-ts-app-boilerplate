@@ -17,16 +17,49 @@ const Login: React.FC = () => {
     const [message, setMessage] = useState<MessageApi>()
 
     useEffect(() => {
-        var arr = session.error;
-        if (session.loginStatus === 'idle' && arr && message) {
-            if (Array.isArray(arr)) {
-                arr.forEach(e => {
-                    message.error(e.message)
-                });
-            } else {
-                message.error(arr.message)
+
+        const login = () => {
+            if (session.loginStatus !== 'idle' && !message) {
+                return false
+            }
+
+            let sessionError = session.error;
+            if (sessionError) {
+
+                let isArray = Array.isArray(sessionError);
+                if (!isArray) {
+                    //return message?.error(sessionError.message)
+                }
+
+                if (isArray) {
+
+                    return null
+                }
+            }
+
+            let sessionUser = session.user;
+            if (sessionUser) {
+
+                return null
+            }
+
+            if (session.loginStatus === 'idle') {
+                if (sessionError && message) {
+                    if (Array.isArray(sessionError)) {
+                        sessionError.forEach(e => {
+                            message.error(e.message)
+                        });
+                    } else {
+
+                    }
+                } else if (sessionUser) {
+
+                }
             }
         }
+
+        login()
+
     }, [session.loginStatus, session.error, message]);
 
     const handleClicLoginButton = (credentials: ICredentials, message: MessageApi) => {
