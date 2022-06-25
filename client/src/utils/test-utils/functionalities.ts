@@ -1,7 +1,6 @@
-import { screen, fireEvent, waitFor, Matcher, queries, SelectorMatcherOptions } from '@testing-library/react';
+import { screen, fireEvent, waitFor, Matcher, queries } from '@testing-library/react';
 
 const writeInInputFoundByPlaceHolder = (body: any, placeHolder: Matcher, text: string) => {
-
     const input: ReturnType<queries.GetByBoundAttribute<any>> = screen.getByPlaceholderText(placeHolder);
     fireEvent.change(input, {
         target: { value: text }
