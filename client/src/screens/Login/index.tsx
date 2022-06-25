@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
 import { ICustomInputGroup } from '../../components/CustomInputGroup/ICustomInputGroup';
-import { loginAsync } from '../../features/userSession/asyncThunks';
+import { loginAsync, logoutAsync } from '../../features/userSession/asyncThunks';
 import { ICredentials } from '../../features/userSession/IUserSession';
 import { selectUserSession } from '../../features/userSession/userSessionSlice';
 import styles from './styles';
@@ -29,11 +29,6 @@ const Login: React.FC = () => {
                     });
                 }
             }
-
-            let sessionUser = session.user;
-            if (sessionUser) {
-                return null
-            }
         }
 
         if (session.loginStatus === 'idle' && message) {
@@ -47,12 +42,17 @@ const Login: React.FC = () => {
         dispatch(loginAsync(credentials))
     }
 
+    const logOut = () => {
+        dispatch(logoutAsync())
+    }
+
     let inputFields: Array<ICustomInputGroup> = [
         {
             name: 'username',
             label: 'User Name',
             defaultValue: '',
-            disabled: false
+            disabled: false,
+
         },
         {
             name: 'password',
@@ -69,7 +69,17 @@ const Login: React.FC = () => {
             _key: 'login_btn',
             children: 'Login',
             loading: session.loginStatus === 'pending',
-            htmlType: 'submit'
+            htmlType: 'submit',
+            name: "login",
+        },
+        {
+            color: 'blue',
+            _key: 'login_btn',
+            children: 'Logout',
+            loading: session.logoutStatus === 'pending',
+            htmlType: 'button',
+            onClick: logOut,
+            name: "logout",
         }
     ]
 
