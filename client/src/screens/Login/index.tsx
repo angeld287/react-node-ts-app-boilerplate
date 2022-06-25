@@ -42,10 +42,6 @@ const Login: React.FC = () => {
         dispatch(loginAsync(credentials))
     }
 
-    const logOut = () => {
-        dispatch(logoutAsync())
-    }
-
     let inputFields: Array<ICustomInputGroup> = [
         {
             name: 'username',
@@ -71,15 +67,6 @@ const Login: React.FC = () => {
             loading: session.loginStatus === 'pending',
             htmlType: 'submit',
             name: "login",
-        },
-        {
-            color: 'blue',
-            _key: 'login_btn',
-            children: 'Logout',
-            loading: session.logoutStatus === 'pending',
-            htmlType: 'button',
-            onClick: logOut,
-            name: "logout",
         }
     ]
 

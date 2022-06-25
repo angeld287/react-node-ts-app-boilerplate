@@ -2,6 +2,9 @@ import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import React, { useState } from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import { logoutAsync } from '../../features/userSession/asyncThunks';
+import { menuright } from './styles';
 
 const items: MenuProps['items'] = [
     {
@@ -16,15 +19,35 @@ const items: MenuProps['items'] = [
     }
 ];
 
+const session: MenuProps['items'] = [
+    {
+        label: 'LogOut',
+        key: 'lgout',
+        icon: <AppstoreOutlined />
+    }
+];
+
+
 const Header: React.FC = () => {
     const [current, setCurrent] = useState('mail');
+    const dispatch = useAppDispatch()
+
+    const logOut = () => {
+        dispatch(logoutAsync())
+    }
+
 
     const onClick: MenuProps['onClick'] = e => {
         console.log('click ', e);
         setCurrent(e.key);
     };
 
-    return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+    return (
+        <>
+            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+            <Menu onClick={logOut} mode="horizontal" items={session} style={menuright} />
+        </>
+    );
 };
 
 export default Header;
