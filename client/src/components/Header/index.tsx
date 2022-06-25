@@ -21,7 +21,7 @@ const items: MenuProps['items'] = [
 
 const session: MenuProps['items'] = [
     {
-        label: 'Log Out',
+        label: 'Logout',
         key: 'lgout',
         icon: <LogoutOutlined />
     }

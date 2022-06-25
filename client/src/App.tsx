@@ -33,7 +33,7 @@ function App() {
       setLoading(false);
       didCancel = true;
     }
-  }, [_userService]);
+  }, [_userService, dispatch]);
 
   if (loading) return <h1>Cargando...</h1>
   if (!session.activeSession) return <Login />

@@ -1,14 +1,12 @@
 const styles = {
     container: {
-        width: 300,
-        height: 300,
+        width: 400,
+        height: 400,
         margin: "50px auto",
         backgroundColor: "white",
-        display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        fontWeight: "bold",
     } as React.CSSProperties,
 };
 

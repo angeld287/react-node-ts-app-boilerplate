@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
 import { ICustomInputGroup } from '../../components/CustomInputGroup/ICustomInputGroup';
-import { loginAsync, logoutAsync } from '../../features/userSession/asyncThunks';
+import { loginAsync } from '../../features/userSession/asyncThunks';
 import { ICredentials } from '../../features/userSession/IUserSession';
 import { selectUserSession } from '../../features/userSession/userSessionSlice';
 import styles from './styles';
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
     let inputFields: Array<ICustomInputGroup> = [
         {
             name: 'username',
-            label: 'User Name',
+            label: 'Username',
             defaultValue: '',
             disabled: false,
 
