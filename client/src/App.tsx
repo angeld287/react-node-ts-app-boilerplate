@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import userService from './apis/userService';
-import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { selectUserSession, setSession } from './features/userSession/userSessionSlice';
 import IUserService from './interfaces/IUserService';
