@@ -18,7 +18,7 @@ class userService implements IUserService {
 
     async logout(): Promise<IResponse> {
         const logoutFetch = await fetch('http://localhost:3001/api/auth/logout', {
-            method: 'GET',
+            method: 'POST',
             credentials: 'include',
             headers: {
                 'Accept': 'application/json',

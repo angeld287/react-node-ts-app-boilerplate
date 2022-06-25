@@ -1,4 +1,4 @@
-import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, LogoutOutlined, MailOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import React, { useState } from 'react';
@@ -21,9 +21,9 @@ const items: MenuProps['items'] = [
 
 const session: MenuProps['items'] = [
     {
-        label: 'LogOut',
+        label: 'Log Out',
         key: 'lgout',
-        icon: <AppstoreOutlined />
+        icon: <LogoutOutlined />
     }
 ];
 
