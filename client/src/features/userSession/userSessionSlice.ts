@@ -3,7 +3,7 @@ import { RootState } from '../../app/store';
 import { loginAsync, logoutAsync, getSessionAsync } from './asyncThunks';
 import { IUserSlice } from './IUserSession';
 
-const initialState: IUserSlice = {
+export const initialState: IUserSlice = {
   user: {
     id: "",
     email: "",

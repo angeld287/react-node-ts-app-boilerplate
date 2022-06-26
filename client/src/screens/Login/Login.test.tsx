@@ -1,17 +1,23 @@
 import React from 'react';
 import { render, RenderResult, functions, fireEvent, screen, waitFor } from '../../utils/test-utils';
 import { Provider } from 'react-redux';
-import { store } from '../../app/store';
+//import { store } from '../../app/store';
+import userSessionReducer, { initialState } from '../../features/userSession/userSessionSlice';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
 import Login from './index';
+import { configureStore } from '@reduxjs/toolkit';
 
 
 let component: RenderResult;
 
+//const preloadedState: any = initialState;
+
+const store = configureStore({ reducer: { userSession: userSessionReducer } });
+
 export const handlers = [
-    rest.get('/api/auth/login', (req, res, ctx) => {
+    rest.post('/api/auth/login', (req, res, ctx) => {
         return res(ctx.json({
             statusCode: "10000",
             message: "Success",
