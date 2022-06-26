@@ -1,10 +1,10 @@
-import { Form, message } from 'antd';
+import { Alert, Form, message } from 'antd';
 import React, { useCallback, useMemo } from 'react';
 import CustomButton from '../CustomButton';
 import CustomInputGroup from '../CustomInputGroup';
 import { ICustomForm } from './ICustomForm';
 
-const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons }) => {
+const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, error }) => {
 
     const _buttons = useMemo(() => buttons.map(b => (
         <CustomButton customStyle={{ marginRight: 5 }} htmlType={b.htmlType} key={'btn_' + b.name} loading={b.loading} {...b} />
@@ -37,6 +37,15 @@ const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons }) => {
                     {_buttons}
                 </Form.Item>
             </div>
+            {
+                error && error.error &&
+                (
+                    <div style={{ textAlign: 'right' }}>
+                        <Alert message={error.message} type="error" />
+                    </div>
+                )
+            }
+
         </Form>
     );
 };
