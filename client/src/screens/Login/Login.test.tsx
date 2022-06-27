@@ -23,6 +23,9 @@ export const handlers = [
 
         return res(
             ctx.status(200),
+            ctx.set("access-control-allow-origin", "*"),
+            ctx.set("Accept", "application/json"),
+            ctx.set("Content-Type", "application/json"),
             ctx.json({
                 statusCode: "10000",
                 message: "Success",

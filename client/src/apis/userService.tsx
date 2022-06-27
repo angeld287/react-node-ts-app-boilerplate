@@ -1,10 +1,12 @@
 import IUserService from "../interfaces/IUserService";
 import { IResponse, ResponseStatus, StatusCode } from "../interfaces/models/IResponse";
+//import fetch from 'isomorphic-fetch';
 
 class userService implements IUserService {
 
     async login(username: string, password: string): Promise<IResponse> {
         try {
+            console.log(username, password)
             const userFetch = await fetch('http://localhost:3001/api/auth/login', {
                 method: 'POST',
                 credentials: 'include',
