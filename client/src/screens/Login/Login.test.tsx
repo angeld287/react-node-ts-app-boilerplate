@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import userSessionReducer from '../../features/userSession/userSessionSlice';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
+import handlers from './Handlers';
 
 import Login from './index';
 import { configureStore } from '@reduxjs/toolkit';
@@ -18,39 +19,6 @@ const store = configureStore({
     })
 });
 
-export const handlers = [
-    rest.post('/api/auth/login', (req, res, ctx) => {
-
-        return res(
-            ctx.status(200),
-            ctx.set("access-control-allow-origin", "*"),
-            ctx.set("Accept", "application/json"),
-            ctx.set("Content-Type", "application/json"),
-            ctx.json({
-                statusCode: "10000",
-                message: "Success",
-                data: {
-                    errors: [
-                        {
-                            message: "E-mail cannot be blank.",
-                            value: "",
-                            param: "username",
-                            location: "body"
-                        },
-                        {
-                            message: "E-mail is not valid.",
-                            value: "",
-                            param: "username",
-                            location: "body"
-                        }
-                    ]
-                }
-            })
-            , ctx.delay(10)
-        )
-    })
-]
-
 const server = setupServer(...handlers)
 
 describe("Login Test Suite", () => {
@@ -63,7 +31,6 @@ describe("Login Test Suite", () => {
     }));
 
     beforeEach(() => {
-        //before each tests initialize the component
         act(() => {
             component = render(
                 <Provider store={store}>
@@ -77,18 +44,18 @@ describe("Login Test Suite", () => {
 
     afterAll(() => server.close())
 
-    //test('It must render the component correcly', () => {
-    //    const { asFragment } = component;
-    //    expect(asFragment()).toMatchSnapshot();
-    //})
-    //
-    //test('It must display basic login components', () => {
-    //    const { getByText } = component;
-    //
-    //    expect(getByText(/Username/i)).toBeInTheDocument();
-    //    expect(getByText(/Password/i)).toBeInTheDocument();
-    //    expect(getByText(/Login/i)).toBeInTheDocument();
-    //});
+    test('It must render the component correcly', () => {
+        const { asFragment } = component;
+        expect(asFragment()).toMatchSnapshot();
+    })
+
+    test('It must display basic login components', () => {
+        const { getByText } = component;
+
+        expect(getByText(/Username/i)).toBeInTheDocument();
+        expect(getByText(/Password/i)).toBeInTheDocument();
+        expect(getByText(/Login/i)).toBeInTheDocument();
+    });
 
 
     test('It must respond "E-mail cannot be blank." when email is blank.', async () => {
@@ -97,17 +64,17 @@ describe("Login Test Suite", () => {
         functions.writeInInputFoundByPlaceHolder(null, /Password/i, "admin2807");
 
         await act(() => {
-            /* fire events that update state */
             fireEvent.click(screen.getByText(/Login/i));
         });
 
+
         await waitFor(() => {
-            const rerendered = component.rerender(
+            component.rerender(
                 <Provider store={store}>
                     <Login />
                 </Provider>
             )
-            //verify if validation message is shown
+
             expect(screen.getByText("E-mail cannot be blank.")).toBeInTheDocument();
         });
     });
