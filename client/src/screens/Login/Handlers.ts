@@ -1,9 +1,6 @@
 import { ResponseTransformer, rest } from "msw";
 
 const login = rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) => {
-    const _error: any = [];
-    const _success: any = null;
-
     const headers: Array<ResponseTransformer<any, any>> = [
         ctx.status(200),
         ctx.set("access-control-allow-origin", "*"),
@@ -11,6 +8,8 @@ const login = rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) 
         ctx.set("Content-Type", "application/json")
     ]
 
+    let _error: any = [];
+    let _success: any = null;
     let json: ResponseTransformer<any, any> = ctx.json({})
 
     if (!req.body)
@@ -20,24 +19,33 @@ const login = rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) 
             ctx.delay(100)
         )
 
+    let _body: any = req.body; //existingadmin@test.com
+
+    if (_body.username === "")
+        _error = [
+            {
+                message: "E-mail cannot be blank.",
+                value: "",
+                param: "username",
+                location: "body"
+            }
+        ]
+
+    if (_body.username === "existingadmin")
+        _error = [
+            {
+                message: "E-mail is not valid.",
+                value: "",
+                param: "username",
+                location: "body"
+            }
+        ]
+
     json = ctx.json({
         statusCode: "10000",
         message: "Success",
         data: {
-            errors: [
-                {
-                    message: "E-mail cannot be blank.",
-                    value: "",
-                    param: "username",
-                    location: "body"
-                },
-                {
-                    message: "E-mail is not valid.",
-                    value: "",
-                    param: "username",
-                    location: "body"
-                }
-            ]
+            errors: _error
         }
     })
 

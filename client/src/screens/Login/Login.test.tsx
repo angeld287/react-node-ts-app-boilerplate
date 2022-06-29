@@ -60,38 +60,30 @@ describe("Login Test Suite", () => {
 
     test('It must respond "E-mail cannot be blank." when email is blank.', async () => {
 
-        functions.writeInInputFoundByPlaceHolder(null, /Username/i, "existingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Username/i, "");
         functions.writeInInputFoundByPlaceHolder(null, /Password/i, "admin2807");
 
         await act(() => {
             fireEvent.click(screen.getByText(/Login/i));
         });
 
-
         await waitFor(() => {
-            component.rerender(
-                <Provider store={store}>
-                    <Login />
-                </Provider>
-            )
-
             expect(screen.getByText("E-mail cannot be blank.")).toBeInTheDocument();
         });
     });
 
-    //test('It must respond "E-mail is not valid" when email is invalid.', async () => {
-    //
-    //    functions.writeInInputFoundByPlaceHolder(null, /Username/i, "existingadmin");
-    //    functions.writeInInputFoundByPlaceHolder(null, /Password/i, "admin2807");
-    //
-    //    fireEvent.click(screen.getByText(/Login/i));
-    //
-    //    await waitFor(() => {
-    //        //verify if validation message is shown
-    //        expect(screen.getByText("E-mail is not valid.")).toBeInTheDocument();
-    //    });
-    //});
-    //
+    test('It must respond "E-mail is not valid" when email is invalid.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Username/i, "existingadmin");
+        functions.writeInInputFoundByPlaceHolder(null, /Password/i, "admin2807");
+
+        fireEvent.click(screen.getByText(/Login/i));
+
+        await waitFor(() => {
+            expect(screen.getByText("E-mail is not valid.")).toBeInTheDocument();
+        });
+    });
+
     //test('It should respond "Password cannot be blank" when password is blank.', async () => {
     //
     //    functions.writeInInputFoundByPlaceHolder(null, /Username/i, "existingadmin@test.com");
