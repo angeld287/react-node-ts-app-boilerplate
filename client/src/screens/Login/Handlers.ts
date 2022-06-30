@@ -41,6 +41,21 @@ const login = rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) 
     if (_body.username === "existingadmin@test.com" && _body.password === "badPass")
         _error[0].message = "Invalid Username or Password."
 
+    if (_body.username === "existingadmin@test.com" && _body.password === "admin2807")
+        _success = {
+            session: {
+                id: 4,
+                email: "existingadmin@test.com",
+                phoneNumber: "8095445501",
+                passwordResetToken: null,
+                passwordResetExpires: null,
+                fullname: "Test User Name",
+                gender: "m",
+                profile: null,
+                userName: "existingAdmin"
+            }
+        };
+
     json = ctx.json({
         statusCode: "10000", message: "Success",
         data: {
