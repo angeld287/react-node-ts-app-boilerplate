@@ -13,47 +13,42 @@ const login = rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) 
     let json: ResponseTransformer<any, any> = ctx.json({})
 
     if (!req.body)
-        return res(
-            ...headers,
-            json,
-            ctx.delay(100)
-        )
+        return res(...headers, json, ctx.delay(100))
+
+    _error = [
+        {
+            message: "",
+            value: "",
+            param: "username",
+            location: "body"
+        }
+    ]
 
     let _body: any = req.body; //existingadmin@test.com
 
     if (_body.username === "")
-        _error = [
-            {
-                message: "E-mail cannot be blank.",
-                value: "",
-                param: "username",
-                location: "body"
-            }
-        ]
+        _error[0].message = "E-mail cannot be blank."
 
     if (_body.username === "existingadmin")
-        _error = [
-            {
-                message: "E-mail is not valid.",
-                value: "",
-                param: "username",
-                location: "body"
-            }
-        ]
+        _error[0].message = "E-mail is not valid."
+
+    if (_body.password === "")
+        _error[0].message = "Password cannot be blank."
+
+    if (_body.password === "admin")
+        _error[0].message = "Password length must be atleast 8 characters."
+
+    if (_body.username === "existingadmin@test.com" && _body.password === "badPass")
+        _error[0].message = "Invalid Username or Password."
 
     json = ctx.json({
-        statusCode: "10000",
-        message: "Success",
+        statusCode: "10000", message: "Success",
         data: {
             errors: _error
         }
     })
 
-    return res(
-        ...headers,
-        json,
-        ctx.delay(10)
-    )
+    return res(...headers, json, ctx.delay(10))
 });
 
 const handlers = [login]
