@@ -1,18 +1,14 @@
-import { ResponseTransformer, rest } from "msw";
+import { headers, json, _rest } from "../../utils/test-handlers-utils";
 
-const login = rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) => {
-    const headers: Array<ResponseTransformer<any, any>> = [
-        ctx.status(200),
-        ctx.set("access-control-allow-origin", "*"),
-        ctx.set("Accept", "application/json"),
-        ctx.set("Content-Type", "application/json")
-    ]
+const login = _rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) => {
+
+    const _headers = headers(ctx);
+    let _json = json(ctx, {});
 
     let _result: any = null;
-    let json: ResponseTransformer<any, any> = ctx.json({})
 
     if (!req.body)
-        return res(...headers, json, ctx.delay(100))
+        return res(..._headers, _json, ctx.delay(100))
 
     _result = { errors: [{ message: "", value: "", param: "username", location: "body" }] }
 
@@ -48,12 +44,12 @@ const login = rest.post('http://localhost:3001/api/auth/login', (req, res, ctx) 
             }
         };
 
-    json = ctx.json({
+    _json = json(ctx, {
         statusCode: "10000", message: "Success",
         data: _result
-    })
+    });
 
-    return res(...headers, json, ctx.delay(10))
+    return res(..._headers, _json, ctx.delay(10))
 });
 
 const handlers = [login]
