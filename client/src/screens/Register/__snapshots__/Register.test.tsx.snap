@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Test Suite It must render the component correcly 1`] = `
+<DocumentFragment>
+  <h1>
+    Register
+  </h1>
+</DocumentFragment>
+`;

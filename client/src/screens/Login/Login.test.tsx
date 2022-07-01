@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, RenderResult, functions, fireEvent, screen, waitFor, act } from '../../utils/test-utils';
 import { Provider } from 'react-redux';
-//import { store } from '../../app/store';
 import userSessionReducer from '../../features/userSession/userSessionSlice';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
@@ -32,7 +31,7 @@ describe("Login Test Suite", () => {
 
     beforeEach(() => {
         if (component)
-            component = render(<h1>None</h1>)
+            component.unmount()
 
         act(() => {
             component = render(
