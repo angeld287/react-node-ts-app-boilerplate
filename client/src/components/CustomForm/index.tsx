@@ -50,4 +50,4 @@ const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, error })
     );
 };
 
-export default CustomForm;
+export default React.memo(CustomForm);
