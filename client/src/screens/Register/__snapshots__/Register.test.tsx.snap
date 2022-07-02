@@ -2,8 +2,297 @@
 
 exports[`Login Test Suite It must render the component correcly 1`] = `
 <DocumentFragment>
-  <h1>
-    Register
-  </h1>
+  <main
+    class="ant-layout-content"
+    style="width: 400px; height: 400px; margin: 50px auto; background-color: white; flex-direction: column; justify-content: center; align-items: center;"
+  >
+    <form
+      autocomplete="off"
+      class="ant-form ant-form-horizontal"
+      id="basic"
+    >
+      <div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-8 ant-form-item-label"
+          >
+            <label
+              class=""
+              for="basic_email"
+              title="Email"
+            >
+              Email
+            </label>
+          </div>
+          <div
+            class="ant-col ant-col-16 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input"
+                  id="basic_email"
+                  placeholder="Email"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-8 ant-form-item-label"
+          >
+            <label
+              class=""
+              for="basic_username"
+              title="Username"
+            >
+              Username
+            </label>
+          </div>
+          <div
+            class="ant-col ant-col-16 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input"
+                  id="basic_username"
+                  placeholder="Username"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-8 ant-form-item-label"
+          >
+            <label
+              class=""
+              for="basic_phonenumber"
+              title="Phone Number"
+            >
+              Phone Number
+            </label>
+          </div>
+          <div
+            class="ant-col ant-col-16 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input"
+                  id="basic_phonenumber"
+                  placeholder="Phone Number"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-8 ant-form-item-label"
+          >
+            <label
+              class=""
+              for="basic_password"
+              title="Password"
+            >
+              Password
+            </label>
+          </div>
+          <div
+            class="ant-col ant-col-16 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input"
+                  id="basic_password"
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-8 ant-form-item-label"
+          >
+            <label
+              class=""
+              for="basic_confirmpassword"
+              title="Confirm your password"
+            >
+              Confirm your password
+            </label>
+          </div>
+          <div
+            class="ant-col ant-col-16 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input"
+                  id="basic_confirmpassword"
+                  placeholder="Confirm your password"
+                  type="password"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-8 ant-form-item-label"
+          >
+            <label
+              class=""
+              for="basic_fullname"
+              title="Fullname"
+            >
+              Fullname
+            </label>
+          </div>
+          <div
+            class="ant-col ant-col-16 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input"
+                  id="basic_fullname"
+                  placeholder="Fullname"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-8 ant-form-item-label"
+          >
+            <label
+              class=""
+              for="basic_gender"
+              title="Gender"
+            >
+              Gender
+            </label>
+          </div>
+          <div
+            class="ant-col ant-col-16 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <input
+                  class="ant-input"
+                  id="basic_gender"
+                  placeholder="Gender"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="text-align: right;"
+      >
+        <div
+          class="ant-row ant-form-item"
+        >
+          <div
+            class="ant-col ant-col-16 ant-col-offset-8 ant-form-item-control"
+          >
+            <div
+              class="ant-form-item-control-input"
+            >
+              <div
+                class="ant-form-item-control-input-content"
+              >
+                <button
+                  class="ant-btn ant-btn-default"
+                  style="color: blue;"
+                  type="submit"
+                >
+                  <span>
+                    Sign Up
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
 </DocumentFragment>
 `;

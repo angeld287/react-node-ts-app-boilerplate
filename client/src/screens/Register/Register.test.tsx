@@ -22,7 +22,7 @@ describe("Login Test Suite", () => {
         expect(component.getByText(/Email/i)).toBeInTheDocument();
         expect(component.getByText(/Username/i)).toBeInTheDocument();
         expect(component.getByText(/Phone Number/i)).toBeInTheDocument();
-        expect(component.getByText(/Password/i)).toBeInTheDocument();
+        expect(component.getAllByText(/Password/i)[0]).toBeInTheDocument();
         expect(component.getByText(/Confirm your password/i)).toBeInTheDocument();
         expect(component.getByText(/Fullname/i)).toBeInTheDocument();
         expect(component.getByText(/Gender/i)).toBeInTheDocument();
