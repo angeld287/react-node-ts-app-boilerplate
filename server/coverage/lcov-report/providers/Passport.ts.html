@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.16% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/24</span>
+                <span class='fraction'>16/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/9</span>
+                <span class='fraction'>6/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.52% </span>
+                <span class="strong">69.56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/23</span>
+                <span class='fraction'>16/23</span>
             </div>
         
             
@@ -167,12 +167,12 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,10 +193,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -228,32 +228,32 @@ import Log from '../middlewares/Log';
 import IUserService from '../interfaces/IUserService';
 import userService from '../services/userService';
 import IUser from '../interfaces/models/User';
+import { IRequest, IResponse } from '../interfaces/vendors';
 &nbsp;
 class Passport {
 &nbsp;
-	passport: _passport.PassportStatic;
-&nbsp;
 	public mountPackage(_express: Application, passport?: _passport.PassportStatic): Application {
+		let localPassport: _passport.PassportStatic;
 		let _user: IUserService = new userService();
 &nbsp;
-		this.passport = passport || <span class="branch-1 cbranch-no" title="branch not covered" >_passport;</span>
+		localPassport = passport || <span class="branch-1 cbranch-no" title="branch not covered" >_passport;</span>
 &nbsp;
-		_express = _express.use(this.passport.initialize());
-		_express = _express.use(this.passport.session());
+		_express = _express.use(localPassport.initialize());
+		_express = _express.use(localPassport.session());
 &nbsp;
-		this.passport.serializeUser&lt;any, any&gt;((req, user, done) =&gt; {
+		localPassport.serializeUser&lt;any, any&gt;((req, user, done) =&gt; {
 			done(null, user);
 		});
 &nbsp;
-		this.passport.deserializeUser&lt;any, any&gt;(<span class="fstat-no" title="function not covered" >(r</span>eq, sessionData, done) =&gt; {
-<span class="cstat-no" title="statement not covered" >			_user.getUserById(sessionData.user.id).then(<span class="fstat-no" title="function not covered" >u </span>=&gt; {</span>
-<span class="cstat-no" title="statement not covered" >				done(null, u);</span>
+		localPassport.deserializeUser&lt;any, any&gt;((req, sessionData, done) =&gt; {
+			_user.getUserById(sessionData.id).then(u =&gt; {
+				done(null, u);
 			}).catch(<span class="fstat-no" title="function not covered" >e </span>=&gt; {
 <span class="cstat-no" title="statement not covered" >				done(e, null);</span>
 			})
 		});
 &nbsp;
-		this.mountLocalStrategies(this.passport);
+		this.mountLocalStrategies(localPassport);
 &nbsp;
 		return _express;
 	}
@@ -261,24 +261,24 @@ class Passport {
 	public mountLocalStrategies(passport: _passport.PassportStatic): void {
 		try {
 			LocalStrategy.init(passport);
-		} catch (_err) {
+		} catch (_err: any) {
 <span class="cstat-no" title="statement not covered" >			Log.error(_err.stack);</span>
 		}
 	}
 &nbsp;
-	public isAuthenticated(req, res, next): any {
-		<span class="missing-if-branch" title="if path not taken" >I</span>if (req.isAuthenticated()) {
-<span class="cstat-no" title="statement not covered" >			return next();</span>
+	public isAuthenticated(req: IRequest, res: IResponse, next: any): any {
+		if (req.isAuthenticated()) {
+			return next();
 		}
 &nbsp;
 		return res.status(401).json({
-			msg: 'Debe autenticarse!',
+			msg: 'You are not authenticated!',
 		});
 	}
 &nbsp;
-<span class="fstat-no" title="function not covered" >	pu</span>blic isAuthorized(req, res, next): any {
+<span class="fstat-no" title="function not covered" >	pu</span>blic isAuthorized(req: IRequest, res: IResponse, next: any): any {
 		const provider = <span class="cstat-no" title="statement not covered" >req.path.split('/').slice(-1)[0];</span>
-		const token = <span class="cstat-no" title="statement not covered" >req.user.tokens.find(<span class="fstat-no" title="function not covered" >to</span>ken =&gt; <span class="cstat-no" title="statement not covered" >token.kind === provider)</span>;</span>
+		const token = <span class="cstat-no" title="statement not covered" >req.session.passport.user.tokens?.find(<span class="fstat-no" title="function not covered" >to</span>ken =&gt; <span class="cstat-no" title="statement not covered" >token.kind === provider)</span>;</span>
 <span class="cstat-no" title="statement not covered" >		if (token) {</span>
 <span class="cstat-no" title="statement not covered" >			return next();</span>
 		} else {
@@ -295,7 +295,7 @@ export default new Passport;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Jun 18 2022 12:07:14 GMT-0400 (Atlantic Standard Time)
+                at Tue Jul 05 2022 17:19:22 GMT-0400 (Atlantic Standard Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

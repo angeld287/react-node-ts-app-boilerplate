@@ -52,6 +52,7 @@ describe('Test User Session', () => {
 
         const logoutresponse = await request(app)
             .post('/api/auth/logout')
+            .set('Cookie', loginResponse.header['set-cookie'])
             .expect('Content-Type', /json/)
             .expect(200);
 

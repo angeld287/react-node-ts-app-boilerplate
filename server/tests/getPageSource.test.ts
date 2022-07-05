@@ -43,7 +43,7 @@ describe('Test getPageSource', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(loginResponse.body.session).toBeDefined()
+        expect(loginResponse.body.data.session).toBeDefined()
 
         const response = await request(app)
             .post('/api/getPageSource')
@@ -52,14 +52,15 @@ describe('Test getPageSource', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body.session).not.toBeNull()
+        expect(response.body.data.success).toBe(true);
 
         const logoutresponse = await request(app)
             .post('/api/auth/logout')
+            .set('Cookie', loginResponse.header['set-cookie'])
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(logoutresponse.body.session).toBeUndefined()
+        expect(logoutresponse.body.data.session).toBeUndefined()
     });
 
     test('It must must return "You are not authorized" when user is not logged', async () => {
@@ -70,7 +71,7 @@ describe('Test getPageSource', () => {
             .expect('Content-Type', /json/)
             .expect(401);
 
-        expect(response.body.msg).toStrictEqual("You are not authenticated!");
+        expect(response.body.data.message).toStrictEqual("You are not authenticated!");
 
     });
 
@@ -81,7 +82,7 @@ describe('Test getPageSource', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(loginResponse.body.session).toBeDefined()
+        expect(loginResponse.body.data.session).toBeDefined()
 
         body.url = ""
         const response = await request(app)
@@ -91,14 +92,15 @@ describe('Test getPageSource', () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body.errors[0].msg).toStrictEqual("url cannot be blank.");
+        expect(response.body.data.errors[0].message).toStrictEqual("url cannot be blank.");
 
         const logoutresponse = await request(app)
             .post('/api/auth/logout')
+            .set('Cookie', loginResponse.header['set-cookie'])
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(logoutresponse.body.session).toBeUndefined()
+        expect(logoutresponse.body.data.session).toBeUndefined()
 
     });
 

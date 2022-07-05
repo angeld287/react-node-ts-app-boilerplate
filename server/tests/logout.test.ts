@@ -42,10 +42,11 @@ describe('Test login user', () => {
 
         const response = await request(app)
             .post('/api/auth/logout')
+            .set('Cookie', loginResponse.header['set-cookie'])
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(response.body.session).toBeUndefined()
+        expect(response.body.data.session).toBeUndefined()
     });
 
 })
