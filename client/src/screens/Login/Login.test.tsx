@@ -1,22 +1,13 @@
 import React from 'react';
 import { render, RenderResult, functions, fireEvent, screen, waitFor, act } from '../../utils/test-utils';
 import { Provider } from 'react-redux';
-import userSessionReducer from '../../features/userSession/userSessionSlice';
-import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import handlers from './loginHandlers';
 
 import Login from './index';
-import { configureStore } from '@reduxjs/toolkit';
+import { store } from '../../utils/redux-config';
 
 let component: RenderResult;
-
-const store = configureStore({
-    reducer: { userSession: userSessionReducer },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        serializableCheck: false
-    })
-});
 
 const server = setupServer(...handlers)
 

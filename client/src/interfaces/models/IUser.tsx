@@ -10,3 +10,7 @@ export interface IUser {
     gender: string;
     userName: string;
 }
+
+export interface IRegisterUser extends IUser {
+    confirmPassword: string;
+}

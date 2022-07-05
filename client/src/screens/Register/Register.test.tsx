@@ -1,6 +1,11 @@
+import { configureStore } from '@reduxjs/toolkit';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { userRegisterSlice } from '../../features/userRegister/userRegisterSlice';
+import { store } from '../../utils/redux-config';
 import { render, RenderResult, functions, fireEvent, screen, waitFor, act } from '../../utils/test-utils';
 import Register from './index'
+
 let component: RenderResult;
 
 describe("Login Test Suite", () => {
@@ -10,7 +15,11 @@ describe("Login Test Suite", () => {
             component.unmount()
 
         act(() => {
-            component = render(<Register />)
+            component = render(
+                <Provider store={store}>
+                    <Register />
+                </Provider>
+            )
         });
     });
 
@@ -28,5 +37,18 @@ describe("Login Test Suite", () => {
         expect(component.getByText(/Gender/i)).toBeInTheDocument();
 
         expect(component.getByText(/Sign Up/i)).toBeInTheDocument();
+    });
+
+    test('It must respond "E-mail cannot be blank." when email is blank.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Username/i, "");
+
+        await act(() => {
+            fireEvent.click(screen.getByText(/Login/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("E-mail cannot be blank.")).toBeInTheDocument();
+        });
     });
 });
