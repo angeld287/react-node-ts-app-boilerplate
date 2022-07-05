@@ -32,7 +32,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("Username cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Username cannot be blank.");
         }
 
     });
@@ -51,7 +51,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.errors[0].msg).toStrictEqual("E-mail cannot be blank.");
+            expect(response.body.errors[0].message).toStrictEqual("E-mail cannot be blank.");
         }
 
     });
@@ -67,7 +67,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("E-mail is not valid.");
+            expect(response.body.data.errors[0].message).toStrictEqual("E-mail is not valid.");
         }
 
     });
@@ -86,7 +86,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("Phone Number cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Phone Number cannot be blank.");
         }
 
     });
@@ -102,7 +102,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("invalid Phone Number format.");
+            expect(response.body.data.errors[0].message).toStrictEqual("invalid Phone Number format.");
         }
 
     });
@@ -121,7 +121,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("Password cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Password cannot be blank.");
         }
 
     });
@@ -136,7 +136,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("Password length must be atleast 8 characters.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Password length must be atleast 8 characters.");
         }
 
     });
@@ -152,7 +152,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("Confirmation Password cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Confirmation Password cannot be blank.");
         }
 
     });
@@ -169,7 +169,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("Passwords don't match.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Passwords don't match.");
         }
 
     });
@@ -188,7 +188,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("fullName cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("fullName cannot be blank.");
         }
 
     });
@@ -207,7 +207,7 @@ describe('Test register user', () => {
             .expect(200);
 
         if (response.body.data.errors !== undefined) {
-            expect(response.body.data.errors[0].msg).toStrictEqual("Gender cannot be blank.");
+            expect(response.body.data.errors[0].message).toStrictEqual("Gender cannot be blank.");
         }
 
     });
