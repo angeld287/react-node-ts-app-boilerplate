@@ -5,14 +5,13 @@
  */
 
 import Encryptions from '../../../providers/Encryptions'
-
-import { validationResult } from 'express-validator';
 import IUserService from '../../../interfaces/IUserService';
 import { IRequest, IResponse } from '../../../interfaces/vendors';
 import Log from '../../../middlewares/Log';
 import userService from '../../../services/userService';
 import { IUserExistenceVerificationResponse } from '../../../interfaces/response/UserResponses';
 import { BadRequestResponse, InternalErrorResponse, SuccessResponse } from '../../../core/ApiResponse';
+import ExpressValidator from '../../../providers/ExpressValidation';
 
 class Register {
     /**
@@ -23,7 +22,7 @@ class Register {
      */
     public static async perform(req: IRequest, res: IResponse): Promise<any> {
         try {
-            const errors = validationResult(req);
+            const errors = new ExpressValidator().validator(req);
             let user: IUserService = new userService()
 
             if (!errors.isEmpty()) {
