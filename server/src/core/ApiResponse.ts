@@ -49,8 +49,12 @@ abstract class ApiResponse {
 }
 
 export class AuthFailureResponse<T> extends ApiResponse {
-    constructor(message = 'Authentication Failure', data?: T) {
+    constructor(message = 'Authentication Failure', private data?: T) {
         super(StatusCode.FAILURE, ResponseStatus.UNAUTHORIZED, message);
+    }
+
+    send(res: Response): Response {
+        return super.prepare<AuthFailureResponse<T>>(res, this);
     }
 }
 

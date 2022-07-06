@@ -14,6 +14,7 @@ import IUserService from '../interfaces/IUserService';
 import userService from '../services/userService';
 import IUser from '../interfaces/models/User';
 import { IRequest, IResponse } from '../interfaces/vendors';
+import { AuthFailureResponse } from '../core/ApiResponse';
 
 class Passport {
 
@@ -56,9 +57,9 @@ class Passport {
 			return next();
 		}
 
-		return res.status(401).json({
-			msg: 'You are not authenticated!',
-		});
+		return new AuthFailureResponse('Fail', {
+			message: 'You are not authenticated!',
+		}).send(res);
 	}
 
 	public isAuthorized(req: IRequest, res: IResponse, next: any): any {
