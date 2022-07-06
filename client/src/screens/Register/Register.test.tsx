@@ -41,14 +41,25 @@ describe("Login Test Suite", () => {
 
     test('It must respond "E-mail cannot be blank." when email is blank.', async () => {
 
-        functions.writeInInputFoundByPlaceHolder(null, /Username/i, "");
-
         await act(() => {
-            fireEvent.click(screen.getByText(/Login/i));
+            fireEvent.click(screen.getByText(/Sign Up/i));
         });
 
         await waitFor(() => {
             expect(screen.getByText("E-mail cannot be blank.")).toBeInTheDocument();
+        });
+    });
+
+    test('It should respond "Username cannot be blank." when Username is blank.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Email/i, "existingadmin@test.com");
+
+        await act(() => {
+            fireEvent.click(screen.getByText(/Sign Up/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Username cannot be blank.")).toBeInTheDocument();
         });
     });
 });
