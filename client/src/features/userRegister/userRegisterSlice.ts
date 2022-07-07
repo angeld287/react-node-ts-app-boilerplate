@@ -15,7 +15,8 @@ export const initialState: IUserRegisterSlice = {
     userName: "",
   },
   status: 'idle',
-  isRegistering: false
+  isRegistering: false,
+  isRegistered: false,
 };
 
 export const userRegisterSlice = createSlice({
@@ -31,11 +32,25 @@ export const userRegisterSlice = createSlice({
 
   //async operations
   extraReducers: (builder) => {
+
     builder
       .addCase(registerAsync.pending, (state) => {
         state.status = 'pending';
       })
       .addCase(registerAsync.fulfilled, (state, action) => {
+        let data = action.payload.data;
+
+        if (data.userId) {
+          state.error = initialState.error;
+          state.message = data.message;
+          state.isRegistered = true;
+        } else {
+          state.isRegistered = false;
+          state.isRegistering = true;
+          state.user = initialState.user
+          state.error = data.errors ? data.errors : data
+        }
+
         state.status = 'idle';
       })
       .addCase(registerAsync.rejected, (state) => {

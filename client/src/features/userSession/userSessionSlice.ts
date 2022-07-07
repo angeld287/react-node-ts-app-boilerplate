@@ -42,7 +42,6 @@ export const userSessionSlice = createSlice({
         state.loginStatus = 'pending';
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
-        state.loginStatus = 'idle';
         let data = action.payload.data;
 
         if (data.session) {
@@ -54,6 +53,8 @@ export const userSessionSlice = createSlice({
           state.user = initialState.user
           state.error = data.errors ? data.errors : data
         }
+        state.loginStatus = 'idle';
+
       })
       .addCase(loginAsync.rejected, (state) => {
         state.loginStatus = 'failed';

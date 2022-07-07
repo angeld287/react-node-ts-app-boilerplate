@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import CustomForm from "../../components/CustomForm"
 import { Content } from 'antd/lib/layout/layout';
 import styles from "./styles";
@@ -7,21 +7,65 @@ import { MessageApi } from "antd/lib/message";
 import { IValidationError } from "../../interfaces/models/IBase";
 import { ICustomInputGroup } from "../../components/CustomInputGroup/ICustomInputGroup";
 import { ICustomButton } from "../../components/CustomButton/ICustomButton";
-import { setIsRegistering } from "../../features/userRegister/userRegisterSlice";
-import { useAppDispatch } from "../../app/hooks";
+import { selectUserRegister, setIsRegistering } from "../../features/userRegister/userRegisterSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { IRegisterUser } from "../../interfaces/models/IUser";
+import { registerAsync } from "../../features/userRegister/asyncThunks";
 
 
 const Register: React.FC = () => {
 
-    //const dispatch = useAppDispatch()
     const [message, setMessage] = useState<MessageApi>()
     const [error, setError] = useState<IValidationError>()
 
+    const register = useAppSelector(selectUserRegister);
     const dispatch = useAppDispatch()
 
+    useEffect(() => {
+
+        const _register = () => {
+
+            setError({
+                message: '',
+                error: false
+            });
+
+            let registerError = register.error;
+            if (registerError) {
+                if (!Array.isArray(registerError)) {
+                    setError({
+                        message: registerError.message,
+                        error: true
+                    })
+                    return message?.error(registerError.message)
+                }
+                if (Array.isArray(registerError)) {
+                    setError({
+                        message: registerError[0].message,
+                        error: true
+                    })
+                    return registerError.forEach(e => {
+                        message?.error(e.message)
+                    });
+                }
+            }
+        }
+
+        if (register.status === 'idle' && message) {
+            _register()
+        } else if (register.status === 'failed') {
+            setError({
+                message: 'Internal Error',
+                error: true
+            })
+        }
+
+    }, [register.status, register.error, message]);
+
     const handleClicRegisterButton = useCallback(
-        (message: MessageApi) => {
+        (user: IRegisterUser, message: MessageApi) => {
             setMessage(message);
+            dispatch(registerAsync(user))
         }
         , []
     );
