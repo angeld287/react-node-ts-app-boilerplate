@@ -47,7 +47,6 @@ export const userRegisterSlice = createSlice({
         } else {
           state.isRegistered = false;
           state.isRegistering = true;
-          state.user = initialState.user
           state.error = data.errors ? data.errors : data
         }
 

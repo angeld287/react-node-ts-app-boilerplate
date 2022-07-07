@@ -30,6 +30,9 @@ const Register: React.FC = () => {
                 error: false
             });
 
+            if (!message)
+                return
+
             let registerError = register.error;
             if (registerError) {
                 if (!Array.isArray(registerError)) {
@@ -37,7 +40,7 @@ const Register: React.FC = () => {
                         message: registerError.message,
                         error: true
                     })
-                    return message?.error(registerError.message)
+                    return message.error(registerError.message)
                 }
                 if (Array.isArray(registerError)) {
                     setError({
@@ -45,9 +48,14 @@ const Register: React.FC = () => {
                         error: true
                     })
                     return registerError.forEach(e => {
-                        message?.error(e.message)
+                        message.error(e.message)
                     });
                 }
+            }
+
+            if (register.isRegistered) {
+                message.success(register.message + " You can login.")
+                dispatch(setIsRegistering(false))
             }
         }
 
@@ -88,7 +96,7 @@ const Register: React.FC = () => {
             disabled: false,
         },
         {
-            name: 'phonenumber',
+            name: 'phoneNumber',
             label: 'Phone Number',
             defaultValue: '',
             disabled: false,
@@ -101,14 +109,14 @@ const Register: React.FC = () => {
             type: 'password'
         },
         {
-            name: 'confirmpassword',
+            name: 'confirmPassword',
             label: 'Confirm your password',
             defaultValue: '',
             disabled: false,
             type: 'password'
         },
         {
-            name: 'fullname',
+            name: 'fullName',
             label: 'Fullname',
             defaultValue: '',
             disabled: false,

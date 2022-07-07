@@ -101,6 +101,15 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
                 <button
                   class="ant-btn ant-btn-default"
                   style="color: blue;"
+                  type="button"
+                >
+                  <span>
+                    Sign Up
+                  </span>
+                </button>
+                <button
+                  class="ant-btn ant-btn-default"
+                  style="color: blue;"
                   type="submit"
                 >
                   <span>

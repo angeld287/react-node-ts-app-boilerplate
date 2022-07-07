@@ -27,6 +27,9 @@ const Login: React.FC = () => {
                 error: false
             });
 
+            if (!message)
+                return
+
             let sessionError = session.error;
             if (sessionError) {
                 if (!Array.isArray(sessionError)) {
@@ -34,7 +37,7 @@ const Login: React.FC = () => {
                         message: sessionError.message,
                         error: true
                     })
-                    return message?.error(sessionError.message)
+                    return message.error(sessionError.message)
                 }
                 if (Array.isArray(sessionError)) {
                     setError({
@@ -42,10 +45,12 @@ const Login: React.FC = () => {
                         error: true
                     })
                     return sessionError.forEach(e => {
-                        message?.error(e.message)
+                        message.error(e.message)
                     });
                 }
             }
+
+            message.success('Login Successfully!')
         }
 
         if (session.loginStatus === 'idle' && message) {
