@@ -68,14 +68,14 @@ const Register: React.FC = () => {
             })
         }
 
-    }, [register.status, register.error, message]);
+    }, [register.status, register.error, message, register.message, register.isRegistered, dispatch]);
 
     const handleClicRegisterButton = useCallback(
         (user: IRegisterUser, message: MessageApi) => {
             setMessage(message);
             dispatch(registerAsync(user))
         }
-        , []
+        , [dispatch]
     );
 
     const closeRegisterScreen = useCallback(() => {
