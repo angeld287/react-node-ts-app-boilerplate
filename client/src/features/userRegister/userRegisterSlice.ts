@@ -15,6 +15,7 @@ export const initialState: IUserRegisterSlice = {
     userName: "",
   },
   status: 'idle',
+  isRegistering: false
 };
 
 export const userRegisterSlice = createSlice({
@@ -23,8 +24,8 @@ export const userRegisterSlice = createSlice({
 
   //Actions
   reducers: {
-    setEmail: (state, action: PayloadAction<string>) => {
-      state.user.email = action.payload;
+    setIsRegistering: (state, action: PayloadAction<boolean>) => {
+      state.isRegistering = action.payload;
     },
   },
 
@@ -44,7 +45,7 @@ export const userRegisterSlice = createSlice({
 });
 
 //Actions
-export const { setEmail } = userRegisterSlice.actions;
+export const { setIsRegistering } = userRegisterSlice.actions;
 
 export const selectUserRegister = (state: RootState) => state.userRegister;
 

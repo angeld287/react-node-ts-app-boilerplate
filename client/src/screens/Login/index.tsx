@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
 import { ICustomInputGroup } from '../../components/CustomInputGroup/ICustomInputGroup';
+import { setIsRegistering } from '../../features/userRegister/userRegisterSlice';
 import { loginAsync } from '../../features/userSession/asyncThunks';
 import { ICredentials } from '../../features/userSession/IUserSession';
 import { selectUserSession } from '../../features/userSession/userSessionSlice';
@@ -66,6 +67,13 @@ const Login: React.FC = () => {
         , [dispatch]
     );
 
+    const goToRegisterScreen = useCallback(
+        () => {
+            dispatch(setIsRegistering(true));
+        },
+        [dispatch]
+    )
+
     let inputFields: Array<ICustomInputGroup> = [
         {
             name: 'username',
@@ -86,12 +94,20 @@ const Login: React.FC = () => {
     let btns: Array<ICustomButton> = [
         {
             color: 'blue',
+            _key: 'register_btn',
+            children: 'Sign Up',
+            htmlType: 'button',
+            name: "register",
+            onClick: goToRegisterScreen
+        },
+        {
+            color: 'blue',
             _key: 'login_btn',
             children: 'Login',
             loading: session.loginStatus === 'pending',
             htmlType: 'submit',
             name: "login",
-        }
+        },
     ]
 
     return (

@@ -1,14 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import userService from './apis/userService';
 import { useAppDispatch, useAppSelector } from './app/hooks';
+import { selectUserRegister } from './features/userRegister/userRegisterSlice';
 import { selectUserSession, setSession } from './features/userSession/userSessionSlice';
 import IUserService from './interfaces/IUserService';
 import Routes from './Routes';
 import Login from './screens/Login';
+import Register from './screens/Register';
 
 function App() {
   const _userService: IUserService = useMemo(() => new userService(), []);
   const session = useAppSelector(selectUserSession);
+  const register = useAppSelector(selectUserRegister);
   const dispatch = useAppDispatch();
 
   const [loading, setLoading] = useState(false);
@@ -35,7 +38,13 @@ function App() {
   }, [_userService, dispatch]);
 
   if (loading) return <h1>Cargando...</h1>
-  if (!session.activeSession) return <Login />
+  if (!session.activeSession) {
+    if (!register.isRegistering) {
+      return <Login />
+    } else {
+      return <Register />
+    }
+  }
 
   return <Routes />;
 }

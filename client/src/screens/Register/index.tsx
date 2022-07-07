@@ -7,6 +7,8 @@ import { MessageApi } from "antd/lib/message";
 import { IValidationError } from "../../interfaces/models/IBase";
 import { ICustomInputGroup } from "../../components/CustomInputGroup/ICustomInputGroup";
 import { ICustomButton } from "../../components/CustomButton/ICustomButton";
+import { setIsRegistering } from "../../features/userRegister/userRegisterSlice";
+import { useAppDispatch } from "../../app/hooks";
 
 
 const Register: React.FC = () => {
@@ -15,12 +17,18 @@ const Register: React.FC = () => {
     const [message, setMessage] = useState<MessageApi>()
     const [error, setError] = useState<IValidationError>()
 
+    const dispatch = useAppDispatch()
+
     const handleClicRegisterButton = useCallback(
         (message: MessageApi) => {
             setMessage(message);
         }
         , []
     );
+
+    const closeRegisterScreen = useCallback(() => {
+        dispatch(setIsRegistering(false));
+    }, [dispatch])
 
     let inputFields: Array<ICustomInputGroup> = [
         {
@@ -70,6 +78,14 @@ const Register: React.FC = () => {
     ]
 
     let btns: Array<ICustomButton> = [
+        {
+            color: 'blue',
+            _key: 'login_btn',
+            children: 'Login',
+            htmlType: 'button',
+            name: "login",
+            onClick: closeRegisterScreen
+        },
         {
             color: 'blue',
             _key: 'register_btn',
