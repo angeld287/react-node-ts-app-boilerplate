@@ -11,6 +11,7 @@ import { selectUserRegister, setIsRegistering } from "../../features/userRegiste
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { IRegisterUser } from "../../interfaces/models/IUser";
 import { registerAsync } from "../../features/userRegister/asyncThunks";
+import { ICustomFields } from "../../components/CustomForm/ICustomForm";
 
 
 const Register: React.FC = () => {
@@ -82,50 +83,87 @@ const Register: React.FC = () => {
         dispatch(setIsRegistering(false));
     }, [dispatch])
 
-    let inputFields: Array<ICustomInputGroup> = [
+    let inputFields: Array<ICustomFields> = [
         {
             name: 'email',
-            label: 'Email',
-            defaultValue: '',
-            disabled: false,
+            input: {
+                name: 'email',
+                label: 'Email',
+                defaultValue: '',
+                disabled: false,
+                type: 'input',
+            }
         },
         {
             name: 'username',
-            label: 'Username',
-            defaultValue: '',
-            disabled: false,
+            input: {
+                name: 'username',
+                label: 'Username',
+                defaultValue: '',
+                disabled: false,
+                type: 'input',
+            }
         },
         {
             name: 'phoneNumber',
-            label: 'Phone Number',
-            defaultValue: '',
-            disabled: false,
+            input: {
+                name: 'phoneNumber',
+                label: 'Phone Number',
+                defaultValue: '',
+                disabled: false,
+                type: 'input',
+            }
         },
         {
             name: 'password',
-            label: 'Password',
-            defaultValue: '',
-            disabled: false,
-            type: 'password'
+            input: {
+                name: 'password',
+                label: 'Password',
+                defaultValue: '',
+                disabled: false,
+                type: 'password',
+            }
         },
         {
             name: 'confirmPassword',
-            label: 'Confirm your password',
-            defaultValue: '',
-            disabled: false,
-            type: 'password'
+            input: {
+                name: 'confirmPassword',
+                label: 'Confirm your password',
+                defaultValue: '',
+                disabled: false,
+                type: 'password',
+            }
         },
         {
             name: 'fullName',
-            label: 'Fullname',
-            defaultValue: '',
-            disabled: false,
+            input: {
+                name: 'fullName',
+                label: 'Fullname',
+                defaultValue: '',
+                disabled: false,
+                type: 'input'
+            }
         },
         {
             name: 'gender',
-            label: 'Gender',
-            defaultValue: '',
-            disabled: false,
+            select: {
+                getItemsNextToken: () => { },
+                name: 'gender',
+                placeholder: 'Gender',
+                defaultValue: '',
+                disabled: false,
+                items: [
+                    {
+                        id: 'm',
+                        name: 'Male'
+                    },
+                    {
+                        id: 'f',
+                        name: 'Female'
+                    }
+                ],
+
+            }
         }
     ]
 

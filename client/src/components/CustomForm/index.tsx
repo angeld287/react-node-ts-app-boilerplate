@@ -2,6 +2,7 @@ import { Alert, Form, message } from 'antd';
 import React, { useCallback, useMemo } from 'react';
 import CustomButton from '../CustomButton';
 import CustomInputGroup from '../CustomInputGroup';
+import CustomSelect from '../CustomSelect';
 import { ICustomForm } from './ICustomForm';
 
 const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, error }) => {
@@ -26,8 +27,20 @@ const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, error })
             {fields.map(
                 _ => {
                     return <div key={'form_' + _.name} >
-                        {(_.type === undefined || _.type === 'input' || _.type === 'password') &&
-                            <CustomInputGroup type={_.type} disabled={_.disabled} defaultValue={_.defaultValue} name={_.name} label={_.label} />
+                        {_.input &&
+                            <CustomInputGroup type={_.input.type} disabled={_.input.disabled} defaultValue={_.input.defaultValue} name={_.input.name} label={_.input.label} />
+                        }
+                        {_.select &&
+                            <CustomSelect id={'select_id_' + _.name}
+                                defaultValue={_.select.defaultValue}
+                                name={_.select.name}
+                                dataTestId={'select_id_' + _.name}
+                                key={'select_id_' + _.name}
+                                style={{ marginBottom: 10 }}
+                                items={_.select.items}
+                                placeholder={_.select.placeholder}
+                                getItemsNextToken={_.select.getItemsNextToken}
+                                disabled={_.select.disabled} />
                         }
                     </div>
                 }
