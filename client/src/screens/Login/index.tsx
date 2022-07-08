@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
+import { ICustomFields } from '../../components/CustomForm/ICustomForm';
 import { ICustomInputGroup } from '../../components/CustomInputGroup/ICustomInputGroup';
 import { setIsRegistering } from '../../features/userRegister/userRegisterSlice';
 import { loginAsync } from '../../features/userSession/asyncThunks';
@@ -79,21 +80,27 @@ const Login: React.FC = () => {
         [dispatch]
     )
 
-    let inputFields: Array<ICustomInputGroup> = [
+    let inputFields: Array<ICustomFields> = [
         {
             name: 'username',
-            label: 'Username',
-            defaultValue: '',
-            disabled: false,
-
+            input: {
+                name: 'username',
+                label: 'Username',
+                defaultValue: '',
+                disabled: false,
+                type: 'input',
+            }
         },
         {
             name: 'password',
-            label: 'Password',
-            defaultValue: '',
-            disabled: false,
-            type: 'password'
-        }
+            input: {
+                name: 'password',
+                label: 'Password',
+                defaultValue: '',
+                disabled: false,
+                type: 'password',
+            }
+        },
     ]
 
     let btns: Array<ICustomButton> = [
