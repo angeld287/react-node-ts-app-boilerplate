@@ -14,11 +14,20 @@ const register = _rest.post('http://localhost:3001/api/auth/register', (req, res
 
     let _body: any = req.body; //existingadmin@test.com
 
+    "Username cannot be blank."
+
+
     if (_body.username === "")
+        _result.errors[0].message = "Username cannot be blank."
+
+    if (_body.email === "")
         _result.errors[0].message = "E-mail cannot be blank."
 
-    if (_body.username === "existingadmin")
+    if (_body.email === "user1234")
         _result.errors[0].message = "E-mail is not valid."
+
+    if (_body.phoneNumber === "")
+        _result.errors[0].message = "Phone Number cannot be blank."
 
     if (_body.password === "")
         _result.errors[0].message = "Password cannot be blank."
@@ -26,22 +35,28 @@ const register = _rest.post('http://localhost:3001/api/auth/register', (req, res
     if (_body.password === "admin")
         _result.errors[0].message = "Password length must be atleast 8 characters."
 
-    if (_body.username === "existingadmin@test.com" && _body.password === "badPass")
-        _result.errors[0].message = "Invalid Username or Password."
+    if (_body.confirmPassword === "")
+        _result.errors[0].message = "Confirmation Password cannot be blank."
 
-    if (_body.username === "existingadmin@test.com" && _body.password === "admin2807")
+    if (_body.fullName === "")
+        _result.errors[0].message = "fullName cannot be blank."
+
+    if (_body.gender === "")
+        _result.errors[0].message = "Gender cannot be blank."
+
+
+
+    if (
+        _body.email === "noexistingadmin@test.com"
+        && _body.username === "noexistingadmin"
+        && _body.password === "admin2807"
+        && _body.confirmPassword === "admin2807"
+        && _body.fullName === "Test User Name"
+        && _body.gender === "admin2807"
+    )
         _result = {
-            session: {
-                id: 4,
-                email: "existingadmin@test.com",
-                phoneNumber: "8095445501",
-                passwordResetToken: null,
-                passwordResetExpires: null,
-                fullname: "Test User Name",
-                gender: "m",
-                profile: null,
-                userName: "existingAdmin"
-            }
+            userId: 10,
+            message: "The user has been created successfully"
         };
 
     _json = json(ctx, {
