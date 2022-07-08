@@ -181,7 +181,7 @@ const Register: React.FC = () => {
             color: 'blue',
             _key: 'register_btn',
             children: 'Sign Up',
-            loading: false,
+            loading: register.status === 'pending',
             htmlType: 'submit',
             name: "register",
         }

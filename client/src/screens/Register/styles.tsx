@@ -1,6 +1,6 @@
 const styles = {
     container: {
-        width: 400,
+        width: 500,
         height: 400,
         margin: "50px auto",
         backgroundColor: "white",
