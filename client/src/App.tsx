@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import userService from './apis/userService';
 import { useAppDispatch, useAppSelector } from './app/hooks';
+import CustomLoader from './components/CustomLoader';
 import { selectUserRegister } from './features/userRegister/userRegisterSlice';
 import { selectUserSession, setSession } from './features/userSession/userSessionSlice';
 import IUserService from './interfaces/IUserService';
@@ -37,7 +38,7 @@ function App() {
     }
   }, [_userService, dispatch]);
 
-  if (loading) return <h1>Cargando...</h1>
+  if (loading) return <CustomLoader />
   if (!session.activeSession) {
     if (!register.isRegistering) {
       return <Login />

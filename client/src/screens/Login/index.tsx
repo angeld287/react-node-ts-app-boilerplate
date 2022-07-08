@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ICustomButton } from '../../components/CustomButton/ICustomButton';
 import CustomForm from '../../components/CustomForm';
 import { ICustomFields } from '../../components/CustomForm/ICustomForm';
-import { ICustomInputGroup } from '../../components/CustomInputGroup/ICustomInputGroup';
 import { setIsRegistering } from '../../features/userRegister/userRegisterSlice';
 import { loginAsync } from '../../features/userSession/asyncThunks';
 import { ICredentials } from '../../features/userSession/IUserSession';
