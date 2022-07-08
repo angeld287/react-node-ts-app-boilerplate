@@ -2,7 +2,7 @@ import { FormProps } from "antd";
 import { IValidationError } from "../../interfaces/models/IBase";
 import { ICustomButton } from "../CustomButton/ICustomButton";
 import { ICustomInputGroup } from "../CustomInputGroup/ICustomInputGroup";
-import { ICustomSelect } from "../CustomSelect/ICustomSelect";
+import { ICustomSelectForm } from "../CustomSelectForm/ICustomSelectForm";
 
 export interface ICustomForm extends FormProps {
     onSubmit: any,
@@ -15,6 +15,6 @@ export interface ICustomForm extends FormProps {
 
 export interface ICustomFields {
     input?: ICustomInputGroup;
-    select?: ICustomSelect;
+    select?: ICustomSelectForm;
     name: string;
 }

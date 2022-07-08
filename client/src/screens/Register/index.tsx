@@ -149,9 +149,10 @@ const Register: React.FC = () => {
             select: {
                 getItemsNextToken: () => { },
                 name: 'gender',
-                placeholder: 'Gender',
+                placeholder: 'Select your Gender',
                 defaultValue: '',
                 disabled: false,
+                label: 'Gender',
                 items: [
                     {
                         id: 'm',

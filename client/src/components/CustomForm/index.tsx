@@ -3,6 +3,7 @@ import React, { useCallback, useMemo } from 'react';
 import CustomButton from '../CustomButton';
 import CustomInputGroup from '../CustomInputGroup';
 import CustomSelect from '../CustomSelect';
+import CustomSelectForm from '../CustomSelectForm';
 import { ICustomForm } from './ICustomForm';
 
 const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, error }) => {
@@ -31,7 +32,8 @@ const CustomForm: React.FC<ICustomForm> = ({ onSubmit, fields, buttons, error })
                             <CustomInputGroup type={_.input.type} disabled={_.input.disabled} defaultValue={_.input.defaultValue} name={_.input.name} label={_.input.label} />
                         }
                         {_.select &&
-                            <CustomSelect id={'select_id_' + _.name}
+                            <CustomSelectForm id={'select_id_' + _.name}
+                                label={_.select.label}
                                 defaultValue={_.select.defaultValue}
                                 name={_.select.name}
                                 dataTestId={'select_id_' + _.name}
