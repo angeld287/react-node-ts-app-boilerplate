@@ -2,7 +2,6 @@ import { Alert, Form, message } from 'antd';
 import React, { useCallback, useMemo } from 'react';
 import CustomButton from '../CustomButton';
 import CustomInputGroup from '../CustomInputGroup';
-import CustomSelect from '../CustomSelect';
 import CustomSelectForm from '../CustomSelectForm';
 import { ICustomForm } from './ICustomForm';
 
