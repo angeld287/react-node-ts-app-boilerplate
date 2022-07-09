@@ -76,16 +76,126 @@ describe("Login Test Suite", () => {
         });
     });
 
-    //test('It should respond "Username cannot be blank." when Username is blank.', async () => {
+    test('It should respond "Username cannot be blank." when Username is blank.', async () => {
 
-    //    functions.writeInInputFoundByPlaceHolder(null, /Email/i, "existingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Email/i, "noexistingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Phone Number/i, "8292619117");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password Confirmation/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Fullname/i, "Test User Name");
 
-    //    await act(() => {
-    //        fireEvent.click(screen.getByText(/Sign Up/i));
-    //    });
+        await waitFor(() => {
+            functions.SelectItemInModalFoundByTestId("Gender", "select_id_gender", "Male");
+        });
 
-    //    await waitFor(() => {
-    //        expect(screen.getByText("Username cannot be blank.")).toBeInTheDocument();
-    //    });
-    //});
+        await act(() => {
+            fireEvent.click(screen.getByText(/Sign Up/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Username cannot be blank.")).toBeInTheDocument();
+        });
+    });
+
+    test('It should respond "Phone Number cannot be blank." when PhoneNumber is blank.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Username/i, "noexistingadmin");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Email/i, "noexistingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password Confirmation/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Fullname/i, "Test User Name");
+
+        await waitFor(() => {
+            functions.SelectItemInModalFoundByTestId("Gender", "select_id_gender", "Male");
+        });
+
+        await act(() => {
+            fireEvent.click(screen.getByText(/Sign Up/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Phone Number cannot be blank.")).toBeInTheDocument();
+        });
+    });
+
+    test('It should respond "Password cannot be blank." when PhoneNumber is blank.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Username/i, "noexistingadmin");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Email/i, "noexistingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Phone Number/i, "8292619117");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password Confirmation/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Fullname/i, "Test User Name");
+
+        await waitFor(() => {
+            functions.SelectItemInModalFoundByTestId("Gender", "select_id_gender", "Male");
+        });
+
+        await act(() => {
+            fireEvent.click(screen.getByText(/Sign Up/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Password cannot be blank.")).toBeInTheDocument();
+        });
+    });
+
+    test('It should respond "Confirmation Password cannot be blank." when PhoneNumber is blank.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Username/i, "noexistingadmin");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Email/i, "noexistingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Phone Number/i, "8292619117");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Fullname/i, "Test User Name");
+
+        await waitFor(() => {
+            functions.SelectItemInModalFoundByTestId("Gender", "select_id_gender", "Male");
+        });
+
+        await act(() => {
+            fireEvent.click(screen.getByText(/Sign Up/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Confirmation Password cannot be blank.")).toBeInTheDocument();
+        });
+    });
+
+    test('It should respond "fullName cannot be blank." when PhoneNumber is blank.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Username/i, "noexistingadmin");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Email/i, "noexistingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Phone Number/i, "8292619117");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password Confirmation/i, "admin2807");
+
+        await waitFor(() => {
+            functions.SelectItemInModalFoundByTestId("Gender", "select_id_gender", "Male");
+        });
+
+        await act(() => {
+            fireEvent.click(screen.getByText(/Sign Up/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("fullName cannot be blank.")).toBeInTheDocument();
+        });
+    });
+
+    test('It should respond "Gender cannot be blank." when PhoneNumber is blank.', async () => {
+
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Username/i, "noexistingadmin");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Email/i, "noexistingadmin@test.com");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Phone Number/i, "8292619117");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Password Confirmation/i, "admin2807");
+        functions.writeInInputFoundByPlaceHolder(null, /Type your Fullname/i, "Test User Name");
+
+        await act(() => {
+            fireEvent.click(screen.getByText(/Sign Up/i));
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Gender cannot be blank.")).toBeInTheDocument();
+        });
+    });
 });
