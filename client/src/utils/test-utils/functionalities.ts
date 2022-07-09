@@ -1,14 +1,14 @@
 import { screen, fireEvent, waitFor, Matcher, queries } from '@testing-library/react';
 
 const writeInInputFoundByPlaceHolder = (body: any, placeHolder: Matcher, text: string) => {
-    const input: ReturnType<queries.GetByBoundAttribute<any>> = screen.getByPlaceholderText(placeHolder);
+    const input: ReturnType<queries.GetByBoundAttribute<any>> = screen.getAllByPlaceholderText(placeHolder)[0];
     fireEvent.change(input, {
         target: { value: text }
     });
     expect(input.value).toBe(text);
 }
 
-const SelectItemInModalFoundByTestId = async (body: any, dataTestId: Matcher, option: Matcher) => {
+const SelectItemInModalFoundByTestId = async (body: string, dataTestId: Matcher, option: Matcher) => {
 
     // find select by data test id
     let html: HTMLElement = screen.getByTestId(dataTestId);
@@ -25,7 +25,7 @@ const SelectItemInModalFoundByTestId = async (body: any, dataTestId: Matcher, op
     fireEvent.click(screen.getByText(option));
 
     // Close the select
-    fireEvent.click(body);
+    fireEvent.click(screen.getByText(body));
 }
 
 const insertFileInInputFileFoundByTestId = async (body: any, dataTestId: Matcher, file: any) => {

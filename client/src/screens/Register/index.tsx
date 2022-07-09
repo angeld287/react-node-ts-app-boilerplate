@@ -90,7 +90,7 @@ const Register: React.FC = () => {
                 label: 'Email',
                 defaultValue: '',
                 disabled: false,
-                type: 'input',
+                type: 'email',
             }
         },
         {
@@ -127,7 +127,7 @@ const Register: React.FC = () => {
             name: 'confirmPassword',
             input: {
                 name: 'confirmPassword',
-                label: 'Confirm your password',
+                label: 'Password Confirmation',
                 defaultValue: '',
                 disabled: false,
                 type: 'password',

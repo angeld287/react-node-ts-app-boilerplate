@@ -4,7 +4,7 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
 <DocumentFragment>
   <main
     class="ant-layout-content"
-    style="width: 400px; height: 400px; margin: 50px auto; background-color: white; flex-direction: column; justify-content: center; align-items: center;"
+    style="width: 500px; height: 400px; margin: 50px auto; background-color: white; flex-direction: column; justify-content: center; align-items: center;"
   >
     <form
       autocomplete="off"
@@ -38,8 +38,8 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
                 <input
                   class="ant-input"
                   id="basic_email"
-                  placeholder="Email"
-                  type="text"
+                  placeholder="Type your Email"
+                  type="email"
                   value=""
                 />
               </div>
@@ -74,8 +74,8 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
                 <input
                   class="ant-input"
                   id="basic_username"
-                  placeholder="Username"
-                  type="text"
+                  placeholder="Type your Username"
+                  type="input"
                   value=""
                 />
               </div>
@@ -92,7 +92,7 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
           >
             <label
               class=""
-              for="basic_phonenumber"
+              for="basic_phoneNumber"
               title="Phone Number"
             >
               Phone Number
@@ -109,9 +109,9 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
               >
                 <input
                   class="ant-input"
-                  id="basic_phonenumber"
-                  placeholder="Phone Number"
-                  type="text"
+                  id="basic_phoneNumber"
+                  placeholder="Type your Phone Number"
+                  type="input"
                   value=""
                 />
               </div>
@@ -146,7 +146,7 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
                 <input
                   class="ant-input"
                   id="basic_password"
-                  placeholder="Password"
+                  placeholder="Type your Password"
                   type="password"
                   value=""
                 />
@@ -164,10 +164,10 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
           >
             <label
               class=""
-              for="basic_confirmpassword"
-              title="Confirm your password"
+              for="basic_confirmPassword"
+              title="Password Confirmation"
             >
-              Confirm your password
+              Password Confirmation
             </label>
           </div>
           <div
@@ -181,8 +181,8 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
               >
                 <input
                   class="ant-input"
-                  id="basic_confirmpassword"
-                  placeholder="Confirm your password"
+                  id="basic_confirmPassword"
+                  placeholder="Type your Password Confirmation"
                   type="password"
                   value=""
                 />
@@ -200,7 +200,7 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
           >
             <label
               class=""
-              for="basic_fullname"
+              for="basic_fullName"
               title="Fullname"
             >
               Fullname
@@ -217,9 +217,9 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
               >
                 <input
                   class="ant-input"
-                  id="basic_fullname"
-                  placeholder="Fullname"
-                  type="text"
+                  id="basic_fullName"
+                  placeholder="Type your Fullname"
+                  type="input"
                   value=""
                 />
               </div>
@@ -251,13 +251,64 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
               <div
                 class="ant-form-item-control-input-content"
               >
-                <input
-                  class="ant-input"
-                  id="basic_gender"
-                  placeholder="Gender"
-                  type="text"
-                  value=""
-                />
+                <div
+                  class="ant-select ant-select-in-form-item ant-select-single ant-select-show-arrow ant-select-show-search"
+                  data-testid="select_id_gender"
+                  style="width: 100%;"
+                >
+                  <div
+                    class="ant-select-selector"
+                  >
+                    <span
+                      class="ant-select-selection-search"
+                    >
+                      <input
+                        aria-activedescendant="select_id_gender_list_0"
+                        aria-autocomplete="list"
+                        aria-controls="select_id_gender_list"
+                        aria-haspopup="listbox"
+                        aria-owns="select_id_gender_list"
+                        autocomplete="off"
+                        class="ant-select-selection-search-input"
+                        id="select_id_gender"
+                        role="combobox"
+                        type="search"
+                        value=""
+                      />
+                    </span>
+                    <span
+                      class="ant-select-selection-placeholder"
+                    >
+                      Select your Gender
+                    </span>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    class="ant-select-arrow"
+                    style="user-select: none;"
+                    unselectable="on"
+                  >
+                    <span
+                      aria-label="down"
+                      class="anticon anticon-down ant-select-suffix"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        data-icon="down"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>

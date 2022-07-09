@@ -39,7 +39,7 @@ exports[`Login Test Suite It must render the component correcly 1`] = `
                   class="ant-input"
                   id="basic_username"
                   placeholder="Username"
-                  type="text"
+                  type="input"
                   value=""
                 />
               </div>

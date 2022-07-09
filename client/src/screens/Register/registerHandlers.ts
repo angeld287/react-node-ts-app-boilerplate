@@ -49,10 +49,11 @@ const register = _rest.post('http://localhost:3001/api/auth/register', (req, res
     if (
         _body.email === "noexistingadmin@test.com"
         && _body.username === "noexistingadmin"
+        && _body.phoneNumber === "8292619117"
         && _body.password === "admin2807"
         && _body.confirmPassword === "admin2807"
         && _body.fullName === "Test User Name"
-        && _body.gender === "admin2807"
+        && _body.gender === "m"
     )
         _result = {
             userId: 10,
