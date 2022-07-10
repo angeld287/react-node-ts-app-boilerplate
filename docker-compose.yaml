@@ -1,6 +1,18 @@
 # docker-compose.yml
 version: "3"
 services:
+    client:
+        build:
+            context: ./client
+            target: production
+            args:
+                SERVER_HOST: server
+                SERVER_PORT: 3000
+        depends_on:
+            - server
+        ports:
+            - "8081:80"
+
     server:
         build: ./server
         depends_on:
@@ -12,7 +24,6 @@ services:
             PORT: 3000
         ports:
             - "3000:3000"
-        command: sh -c "npm install && npm run dev"
         volumes:
             - ./server:/usr/src/app/
 
@@ -26,10 +37,3 @@ services:
             POSTGRES_DB: db
         volumes:
             - ./server/db/database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
-
-    client:
-        build:
-            context: ./client
-            target: production
-        ports:
-            - "8081:80"
