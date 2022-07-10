@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import PropTypes from 'prop-types'
 import { Select } from "antd";
 import { ICustomSelect } from './ICustomSelect';
 import { DefaultOptionType } from 'antd/lib/select';
