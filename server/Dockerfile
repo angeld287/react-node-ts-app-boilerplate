@@ -8,7 +8,7 @@ RUN npm install -g nodemon
 
 COPY ./package*.json ./
 
-RUN npm ci
+RUN npm ci --only=production
 
 COPY . .
 
@@ -21,4 +21,5 @@ EXPOSE 3000
 RUN npm run build
 
 # Run node server
-CMD npm run start
+#CMD npm run start
+CMD ["node", "dist/Server.js"]
