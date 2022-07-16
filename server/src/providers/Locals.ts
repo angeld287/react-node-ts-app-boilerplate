@@ -20,7 +20,10 @@ class Locals {
         const apiPrefix = process.env.API_PREFIX || 'api';
 
         //allow origin cors
-        const url = 'http://localhost:3000';
+        const urls = [
+            'http://localhost:3000',
+            'http://localhost:8081',
+        ];
 
 
         return {
@@ -28,7 +31,7 @@ class Locals {
             appSecret,
             port,
             dbUrl: DATABASE_URL,
-            url
+            urls
         }
     }
 

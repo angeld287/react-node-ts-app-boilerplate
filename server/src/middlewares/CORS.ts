@@ -15,7 +15,7 @@ class CORS {
 		Log.info('Booting the \'CORS\' middleware...');
 
 		const options = {
-			origin: Locals.config().url,
+			origin: Locals.config().urls,
 			optionsSuccessStatus: 200,		// Some legacy browsers choke on 204
 			credentials: true
 		};

@@ -3,8 +3,6 @@ version: "3"
 services:
     client:
         build: ./client
-        depends_on:
-            - server
         working_dir: /app
         ports:
             - "8081:80"
