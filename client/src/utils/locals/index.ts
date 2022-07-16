@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Define App Locals & Configs
  *
@@ -11,8 +12,8 @@ class Locals {
      * throughout the app's runtime
      */
     public static config(): any {
-        const server_host = process.env.SERVER_HOST || "localhost";
-        const server_port = process.env.SERVER_PORT || 3000;
+        const server_host = window._env_.REACT_APP_SERVER_HOST;
+        const server_port = window._env_.REACT_APP_SERVER_PORT;
 
         const server_url = "http://" + server_host + ":" + server_port
 

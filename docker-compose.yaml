@@ -2,14 +2,10 @@
 version: "3"
 services:
     client:
-        build:
-            context: ./client
-            target: production
-            args:
-                SERVER_HOST: server
-                SERVER_PORT: 3000
+        build: ./client
         depends_on:
             - server
+        working_dir: /app
         ports:
             - "8081:80"
 
@@ -20,8 +16,8 @@ services:
         working_dir: /usr/src/app
         environment:
             DATABASE_URL: postgres://admin:admin@postgres:5432/db
-            NODE_ENV: production
             PORT: 3000
+            NODE_ENV: production
         ports:
             - "3000:3000"
         volumes:
