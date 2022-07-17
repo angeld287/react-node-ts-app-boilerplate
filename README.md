@@ -1,8 +1,5 @@
-This is a application used to find web pages with dofollow links. The purpose of this application is to help SEO professionals to find greats backlinks for web pages. This app use google search engine api to search web pages and these web pages are examined with regular expressions to verify and catch html tags <a> with rel="dofollow".
 
-```bash
-<a href="https://example.com" rel="dofollow">Text</a>
-```
+This is a basic template that contains the registration, login and session verification processes. The technologies used are node, typescript, react, posgres. To handle states in react the redux toolkit is used.
 
 # Run Application with Docker
 
